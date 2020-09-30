@@ -1,0 +1,70 @@
+﻿@model Otel.Models.Keep
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Create", "AdminHousekeeping", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+ 
+        <section id="form-control">
+            <div class="row">
+                <!-- file repeater  -->
+                <div class="col-xl-8 col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"><b>Housekeeping Oluştur</b></h4>
+                        </div>
+                        <div class="card-content" align="center">
+                            <div class="card-body">
+                                <form action="#">
+                                    <div class="row" >
+
+                                        <div class="col-md-12 col-sm-6 form-group" align="center">
+                                            <label class="control-label col-md-6">Housekeeping Adı</label>
+                                            @Html.EditorFor(model => model.keepAd, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.keepAd, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-6 form-group">
+                                            <label class="control-label col-md-6">Durum</label>
+                                            <select name="active" class="form-control"id="active">
+                                                <option value="0">Aktif</option>
+                                                <option value="1">Pasif</option>
+                                            </select>
+
+                                        </div>
+
+                                        <br /><br /> <br /><br /> <br />
+                                        <div class="col form-group p-0">
+                                            &nbsp;&nbsp; &nbsp;&nbsp;
+                                            <div class="col-md-offset-2 col-md-10" align="right">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+
+
+                                            <div>
+                                                @Html.ActionLink("Geri Dön", "Index")
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /file repeater -->
+
+            </div>
+        </section>
+   
+}
+
+
+
+
+

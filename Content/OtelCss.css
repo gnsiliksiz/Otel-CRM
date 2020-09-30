@@ -1,0 +1,85 @@
+﻿body {
+    background-image: linear-gradient(to top,rgba(226, 219, 219, 0.96),rgba(239, 237, 237, 0.90));
+}
+header {
+    background-image: linear-gradient(to top,rgba(226, 219, 219, 0.96),rgba(239, 237, 237, 0.90));
+}
+.homeButtonsBack {
+    background-color: rgba(218, 218, 218, 0.30) !important;
+    padding: 3rem;
+    position: relative;
+    padding: 2rem;
+    margin-bottom: 0.8rem;
+    height: 105px;
+    box-shadow: 1px 6px 5px rgba(136, 136, 136, 0.15)
+}
+.backButton {
+    left: 0px;
+    position: absolute;
+    right: 386px;
+    top: -26px;
+}
+.homeButtons {
+    width: 35% !important;
+    /*background-color: #b72525;*/
+    background-image: linear-gradient(to top,#b72525,#d67676);
+    color: white;
+    border: 2px solid #b72525;
+}
+.homeButtons2 {
+    width: 35% !important;
+    background-image: linear-gradient(to top,#b0c7ea,#6792d3);
+    border: 2px solid #6792d3;
+    color: white;
+}
+
+.homeButtons2:hover{
+    transform:scale(1.08);
+}
+    .homeButtons:hover {
+        transform: scale(1.08);
+    }
+.homeButtons2:active {
+    background-color: #6792d3;
+}
+.homeButtons:active {
+    background-color: #b72525;
+}
+#more{
+    display:none;
+}
+
+.addReadMore.showlesscontent .SecSec,
+.addReadMore.showlesscontent .readLess {
+    display: none;
+}
+
+.addReadMore.showmorecontent .readMore {
+    display: none;
+}
+
+.addReadMore .readMore,
+.addReadMore .readLess {
+    font-weight: bold;
+    margin-left: 2px;
+    color: blue;
+    cursor: pointer;
+}
+
+.addReadMoreWrapTxt.showmorecontent .SecSec,
+.addReadMoreWrapTxt.showmorecontent .readLess {
+    display: block;
+}
+
+.adminButton {
+    position: absolute;
+    right: 0px;
+    /* bottom: 9px; */
+    top: 241px;
+}
+
+.linkgeridon {
+    position: absolute !important;
+    bottom: 340px !important;
+    left: 62px !important;
+}

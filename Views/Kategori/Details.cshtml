@@ -1,0 +1,203 @@
+﻿@model Otel.Models.Urun
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section Sepet{
+    <div class="col-md-2">
+        <a href="#" class="module module-cart right" data-toggle="panel-cart">
+            <span class="cart-icon">
+                <i class="ti ti-shopping-cart"></i>
+                <span class="notification">2</span>
+            </span>
+            <span class="cart-value">$32.98</span>
+        </a>
+    </div>
+}
+
+<div id="panel-cart">
+    <div class="panel-cart-container">
+        <div class="panel-cart-title">
+            <h5 class="title">Your Cart</h5>
+            <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+        </div>
+        <div class="panel-cart-content">
+            <table class="table-cart">
+                <tr>
+                    <td class="title">
+                        <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
+                        <span class="caption text-muted">26”, deep-pan, thin-crust</span>
+                    </td>
+                    <td class="price">$9.82</td>
+                    <td class="actions">
+                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
+                        <span class="caption text-muted">Large (500g)</span>
+                    </td>
+                    <td class="price">$9.82</td>
+                    <td class="actions">
+                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
+                        <span class="caption text-muted">Small (200g)</span>
+                    </td>
+                    <td class="price text-success">$0.00</td>
+                    <td class="actions">
+                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        <span class="name">Weekend 20% OFF</span>
+                    </td>
+                    <td class="price text-success">-$8.22</td>
+                    <td class="actions"></td>
+                </tr>
+            </table>
+            <div class="cart-summary">
+                <div class="row">
+                    <div class="col-7 text-right text-muted">Order total:</div>
+                    <div class="col-5"><strong>$21.02</strong></div>
+                </div>
+                <div class="row">
+                    <div class="col-7 text-right text-muted">Devliery:</div>
+                    <div class="col-5"><strong>$3.99</strong></div>
+                </div>
+                <hr class="hr-sm">
+                <div class="row text-lg">
+                    <div class="col-7 text-right text-muted">Total:</div>
+                    <div class="col-5"><strong>$24.21</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
+</div>
+
+<!-- Content -->
+<div id="content">
+
+    <!-- Section -->
+    <section class="section bg-light">
+        <form action="#">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 push-lg-2">
+                        <!-- Product Single -->
+                        <div class="product-single">
+                            <input type="hidden" id="extraUrunID" />
+                            <input type="hidden" id="extraUrunAd" />
+                            <input type="hidden" id="extraUrunFiyat" />
+                            <div class="product-content">
+                                <div class="product-header text-center">
+                                    <h3 class="product-title">@Model.urunAd</h3>
+
+                                    <div class="product-image">
+                                        <img src=@Model.urunResim alt="" style="width:50%">
+                                    </div>
+                                    <span class="product-caption text-muted">@Model.urunAciklama</span>
+                                </div>
+                                <hr class="hr-primary">
+                                @*<p class="text-center text-muted">Lütfen eklemek istediğiniz malzemeleri seçin.</p>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>*@
+                                @*<div class="panel-details-container">
+
+                                     Panel Details / Ekstra urunler 
+                                    <div class="panel-details">
+                                        <div class="row">
+                                            @Html.Hidden("urunID")
+
+
+                                            @Html.Action("GetExtraUrun", "Kategori", new { urunID = Model.urunID })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>*@
+                                <br /><br />
+                                <h5 class="text-center text-muted"><b>Fiyat</b></h5>
+                                <div class="product-price text-center"><h5>@Convert.ToDouble(Model.urunFiyat) ₺</h5></div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group text-center">
+                                            @Html.TextBox("miktar", null, new { @class = "form-control input-qty form-control-lg", @type = "number" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-outline-primary btn-lg btn-block addBasket" data-pID="@Model.urunID" itemid="@Model.urunID" onclick="AddToCard(this)"><span>Sepete Ekle</span></button>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="@Url.Action("Index","Kategori")" class="btn btn-link">Geri Dön</a>
+                                </div>
+                            </div>
+
+ 
+                            
+       
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Content / End -->
+<script>
+
+    function AddToCard(item) {
+        var urunID = $(item).attr("itemid");
+        var urunMiktar = $("#miktar").val();
+        var isChecked = $('#IsCredit').prop("checked");
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Kategori/ExtraGetir?extraUrunID=" + extraUrunID,
+            success: function (data) {
+                extraUrunID = data[0].extraUrunID;
+                extraUrunAdi = data[0].extraUrunAdi;
+                alert(extraUrunAdi);
+                extraUrunFiyat = data[0].extraUrunFiyat;
+                document.getElementById("extraUrunID") = extraUrunID;
+                document.getElementById("extraUrunAdi") = extraUrunAdi;
+                document.getElementById("extraUrunFiyat") = extraUrunFiyat;
+                return data;
+            },
+            error: function (error) {
+                alert("Hata");
+            }
+        });
+        var extraUrunID = $("#extraUrunID").val();
+        //alert(extraUrunID);
+    }
+
+
+
+
+</script>

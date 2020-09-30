@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Otel.Models.ExtraUrun>
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-4">
+        <label class="custom-control custom-checkbox">
+            <div class="row">
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id=@item.extraUrunID value='@item.extraUrunAdi' onchange="changeEvent(this)">
+
+
+                    <label class="form-check-label" for=@item.extraUrunID data-toggle="collapse">@item.extraUrunAdi   </label>
+                    @*<div id="panelDetailsOther" class="collapse">
+                <textarea cols="30" rows="4" class="form-control" placeholder="Odanız ile ilgili ek taleplerinizi buradan bize iletebilirsiniz."></textarea>
+            </div>*@
+
+                </div>
+                &nbsp;
+                <div>[+@Convert.ToDouble(item.extraUrunFiyat) ₺ ekle]</div>
+            </div>
+            
+
+            @*<input type="checkbox" Slass="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">@item.extraUrunAdi</span>*@
+        </label>
+        
+    </div>
+
+}

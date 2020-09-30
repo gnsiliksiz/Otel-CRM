@@ -1,0 +1,125 @@
+﻿
+@model IList<Otel.Models.Urun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            Ürün Listesi
+        </li>
+    </ol>
+</div>
+<br />
+
+<a href="/Urun/Create/" class="btn btn-danger mb-1 btn-sm">Yeni Ürün Ekle</a>
+<br />
+<br />
+@Html.Hidden("urunID")
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                <div class="card" style="border-radius: 10px;">
+                    <img class="card-img-top" src="@item.urunResim" alt="Card image" style="width:100%; height:200px; object-fit:cover; border-radius: 10px">
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>@item.urunAd</strong></h4>
+                        <p class="card-text">@item.urunAciklama</p>
+                        <p>@item.urunFiyat.ToString() TL</p>
+                        <button type="button" class="btn btn-info btn-sm" onclick="@("window.location.href='"+Url.Action("Edit","Urun", new { urunID = item.urunID }) + "'");"><i class="fas fa-pencil-alt"></i> Duzenle</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteUrunRecord(@item.urunID)"><i class="fas fa-trash"></i> Sil</button>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Ürün Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen ürünü silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+    });
+    function AddNewFirma() {
+        $("#AddModal").modal();
+    }
+
+    function SaveForm() {
+        var urunAd = $("#urunAd").val();
+        var urunAciklama = $("#urunAciklama").val();
+        var urunResim = $("#urunResim").val();
+        if (urunAd == "" || urunAciklama == "" || urunResim == "") {
+            //$("#message1").hide();
+            alert("Girdiginiz Bilgiler Eksik veya hatalıdır.")
+            //$("#message2").show();
+            return false;
+        }
+        var data = $("#Registration").serialize();
+        $.ajax({
+            type: "post",
+            data: data,
+            url: "/Urun/SaveData",
+            success: function (result) {
+                $("#message1").show();
+                $("#message2").hide();
+                alert("Ekleme islemi Başarılı!");
+                window.location.href = "/Urun/index";
+                $("#Registration")[0].reset();
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteUrunRecord = function (urunID) {
+        $("#urunID").val(urunID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var urunID = $("#urunID").val();
+        $.ajax({
+            type: "POST",
+            url: "/Urun/DeleteUrunRecord?urunID=" + urunID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/Urun/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

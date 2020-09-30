@@ -1,0 +1,146 @@
+﻿@model Otel.Models.Activite
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "AdminActivite", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Aktivite Oluştur</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Adı</label>
+                                        @Html.EditorFor(model => model.activiteAdi, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.activiteAdi, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Açıklama</label>
+                                        @Html.EditorFor(model => model.activiteAciklama, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.activiteAciklama, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Fiyat</label>
+                                        @Html.EditorFor(model => model.activiteFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.activiteFiyat, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Kontenjan</label>
+                                        @Html.EditorFor(model => model.kontenjan, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.kontenjan, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 form-group">
+                                        <label><b>Tarih Bilgileri</b></label>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Başlangıç Tarih</label>
+                                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control pickadate",placeholder="GG.AA.YY",@type="date" } })
+                                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Bitiş Tarihi</label>
+                                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control pickadate",placeholder="GG.AA.YY",@type="date"  } })
+                                        @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Başlangıç Saat</label>
+                                        @Html.EditorFor(model => model.startTime, new { htmlAttributes = new { @class = "form-control pickatime",placeholder="xx:xx" } })
+                                        @Html.ValidationMessageFor(model => model.startTime, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Bitiş Saat</label>
+                                        @Html.EditorFor(model => model.endTime, new { htmlAttributes = new { @class = "form-control pickatime",placeholder="xx:xx" } })
+                                        @Html.ValidationMessageFor(model => model.endTime, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 form-group">
+                                        <label><b>Yer, süre ve Konaklama bilgileri</b></label>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Yer</label>
+                                        @Html.EditorFor(model => model.activiteYer, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.activiteYer, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Activite Suresi</label>
+                                        @Html.EditorFor(model => model.activiteSure, new { htmlAttributes = new { @class = "form-control",@type="number" } })
+                                        @Html.ValidationMessageFor(model => model.activiteSure, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Konaklama Var mı?</label>
+                                        @Html.EditorFor(model => model.Konaklama, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Konaklama, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Restaurant Var mı?</label>
+                                        @Html.EditorFor(model => model.Restoran, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Restoran, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-12 form-group file-repeater">
+                                        <div data-repeater-list="repeater-list">
+                                            <div data-repeater-item>
+                                                <div class="row mb-3">
+                                                    <div class="col-xl-6 col-lg-12">
+                                                        <label class="control-label col-md-6">Resim</label>
+                                                        <input type="file" name="activiteResim" id="activiteResim" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+                                                        @Html.ValidationMessageFor(model => model.activiteResim, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10" align="right">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+
+                                            <div>
+                                                @Html.ActionLink("Geri Dön", "Index")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+          
+        </div>
+    </section>
+}
+
+
+

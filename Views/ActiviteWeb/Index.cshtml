@@ -1,0 +1,119 @@
+﻿@model IList<Otel.Models.Activite>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="page-content">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-10 push-md-1" role="tablist">
+
+                <div id="menuBurgersContent" class="menu-category-content padded collapse show">
+                    <div class="row gutters-sm">
+                        <div class="backButton">
+                            <a href="/Home/Index" class="module module-cart">
+                                <i class="fa fa-arrow-left" style="font-size:23px;color:#666464"></i>
+                            </a>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 col-6">
+                                <!-- Menu Item -->
+                                <div class="menu-item menu-grid-item">
+                                    
+                                    <img class="mb-4" src="@item.activiteResim" alt="" style="width:250px;height:200px;">
+                                    <br />
+                                    <h4 class="mb-0">@item.activiteAdi</h4>
+                                    <br />
+                                    <div>
+                                        <p class="addReadMore showlesscontent">@item.activiteAciklama</p>
+                                    </div>
+                                    <h6 class="mb-0">@item.kontenjan Kişilik Kontenjan</h6>
+                                    <h6 class="mb-0">Baslangıç Tarihi: @Convert.ToDateTime(item.startDate).ToShortDateString() @item.startTime</h6>
+
+
+                                    <h6 class="mb-0">Bitiş Tarihi: @Convert.ToDateTime(item.endDate).ToShortDateString() @item.endTime</h6>
+                                    <h6 class="mb-0">
+                                        Konaklama:  @if (item.Restoran == true)
+                                        {
+                                            <span class="success">Var</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="warning">Yok</span>
+                                        }
+                                    </h6>
+
+                                    <h6 class="mb-0">
+                                        Restoran: @if (item.Konaklama == true)
+                                        {
+                                            <span class="success">Var</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="warning">Yok</span>
+                                        }
+                                    </h6>
+
+                                    <br />
+
+                                    <div class="row align-items-center mt-4">
+                                        <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted"><b>TL</b></span><b> @Convert.ToInt32(item.activiteFiyat)</b></span></div>
+                                        <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><button class="btn btn-outline-secondary btn-sm" onclick=" location.href='@Url.Action("Create", "RezervasyonActivite")' "><span>Rezervasyon Talep Et</span></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    //    $("#spanClass").each(function (i) {
+    //        var len = $(this).text().trim().length;
+    //        if (len > 100) {
+    //            $(this).text($(this).text().substr(0, 100) + '...');
+    //        }
+    //    });
+    //});
+
+    function AddReadMore() {
+        //This limit you can set after how much characters you want to show Read More.
+        var carLmt = 10;
+        // Text to show when text is collapsed
+        var readMoreTxt = " ... Devamını oku";
+        // Text to show when text is expanded
+        var readLessTxt = "Daha az göster";
+        //Traverse all selectors with this class and manupulate HTML part to show Read More
+        $(".addReadMore").each(function () {
+            if ($(this).find(".firstSec").length)
+                return;
+
+            var allstr = $(this).text();
+            if (allstr.length > carLmt) {
+                var firstSet = allstr.substring(0, carLmt);
+                var secdHalf = allstr.substring(carLmt, allstr.length);
+                var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf + "</span><span class='readMore'  title='Click to Show More'>" + readMoreTxt + "</span><span class='readLess' title='Click to Show Less'>" + readLessTxt + "</span>";
+                $(this).html(strtoadd);
+            }
+
+        });
+        //Read More and Read Less Click Event binding
+        $(document).on("click", ".readMore,.readLess", function () {
+            $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
+        });
+    }
+    $(function () {
+        //Calling function after Page Load
+        AddReadMore();
+    });
+</script>

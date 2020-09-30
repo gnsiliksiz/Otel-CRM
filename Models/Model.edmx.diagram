@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a69e46bf3bb24b199b502b244b73bb6c" Name="Diagram1">
+        <EntityTypeShape EntityType="OtelQrModel.Activite" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Ariza" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Bildirim" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Duyuru" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.ExtraUrun" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Kategori" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Keep" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Masor" Width="1.5" PointX="10.5" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Musteri" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Oda" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.OdemeTip" Width="1.5" PointX="2.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Reception" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.RezervasyonActivite" Width="1.5" PointX="9.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.RezervasyonSpa" Width="1.5" PointX="12.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Sepet" Width="1.5" PointX="10.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Sipari" Width="1.5" PointX="7.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.SiparisDetay" Width="1.5" PointX="9.75" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Spa" Width="1.5" PointX="8.25" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Taksi" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Urun" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.UrunMesaj" Width="1.5" PointX="7.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.User" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Vale" Width="1.5" PointX="7.5" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Wifi" Width="1.5" PointX="7.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.WifiMesaj" Width="1.5" PointX="9.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OtelQrModel.Yetki" Width="1.5" PointX="0.75" PointY="21" IsExpanded="true" />
+        <AssociationConnector Association="OtelQrModel.FK_RezervasyonActivite_Activite" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Ariza_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Bildirim_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_ExtraUrun_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Urun_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Keep_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Masor_Spa" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_RezervasyonSpa_Masor" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Musteri_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_RezervasyonActivite_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_RezervasyonSpa_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Oda_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Sepet_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Siparis_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Vale_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Wifi_Oda" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Sepet_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_SiparisDetay_Siparis" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_SiparisDetay_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Urun_User" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_UrunMesaj_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_User_Yetki" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_WifiMesaj_Wifi" ManuallyRouted="false" />
+        <AssociationConnector Association="OtelQrModel.FK_Sepet_OdemeTip" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

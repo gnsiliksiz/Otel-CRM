@@ -1,0 +1,72 @@
+﻿@model Otel.Models.Taksi
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "AdminTaksi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Taksi Kayıt Oluştur</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Taksi Adı</label>
+                                        @Html.EditorFor(model => model.taksiAd, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.taksiAd, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durak Adı</label>
+                                        @Html.EditorFor(model => model.taksiDurakAd, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.taksiDurakAd, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Telefon Numarası</label>
+                                        @Html.EditorFor(model => model.taksiTelefon, new { htmlAttributes = new { @class = "form-control",placeholder="(5xx) xxx xx xx" } })
+                                        @Html.ValidationMessageFor(model => model.taksiTelefon, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Adres</label>
+                                        @Html.EditorFor(model => model.taksiAdres, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.taksiAdres, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-6 form-group file-repeater">
+
+
+                                        <div class="col form-group p-0">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <br /><br />
+                                        <div>
+                                            @Html.ActionLink("Geri Dön", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}

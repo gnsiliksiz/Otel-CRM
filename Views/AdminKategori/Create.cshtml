@@ -1,0 +1,92 @@
+﻿@model Otel.Models.Kategori
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<section id="form-control-repeater">
+    <div class="row">
+        <!-- file repeater  -->
+        <div class="col-xl-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"><b>Kategori Oluştur</b></h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form action="#">
+                            <div class="row">
+
+
+                                <div class="col-md-6 col-sm-12 form-group">
+                                    <label class="control-label col-md-6">Kategori Ad</label>
+                                    @Html.EditorFor(model => model.kategoriAd, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.kategoriAd, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6 col-sm-12 form-group">
+                                    <label class="control-label col-md-6">Kategori Sıra</label>
+                                    @Html.EditorFor(model => model.kategoriSira, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.kategoriSira, "", new { @class = "text-danger" })
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-12 form-group">
+                                    @*<label class="control-label col-md-6">Durum</label>
+            @Html.EditorFor(model => model.kategoriDurum, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.kategoriDurum, "", new { @class = "text-danger" })
+        </div>*@
+
+                                    @*<div class="col-md-6 col-sm-12 form-group">
+             <label>Durum</label>
+             <select class="custom-select form-control" id="kategoriDurum" name="kategoriDurum">
+                 <option value='0'>------</option>
+                 <option value='1'>Pasif</option>
+
+             </select>
+        </div>*@
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        <select name="Interested_in" class="form-control">
+                                            <option value="male">Aktif</option>
+                                            <option value="female">Pasif</option>
+                                        </select>
+
+                                    </div>
+
+
+
+                                    <div class="col-6 form-group file-repeater">
+                                        <div data-repeater-list="repeater-list">
+                                            <div data-repeater-item>
+                                                <div class="row mb-3">
+                                                    <div class="col-xl-12 col-lg-12">
+                                                        <label class="control-label col-md-6">Resim</label>
+                                                        <input type="file" name="kategoriResim" id="kateogoriResim" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+                                                        @Html.ValidationMessageFor(model => model.kategoriResim, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br /><br />
+
+
+                                        <div class="col form-group p-0" align="center">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /file repeater -->
+
+    </div>
+</section>

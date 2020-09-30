@@ -1,0 +1,96 @@
+﻿@model Otel.Models.Sepet
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="section bg-light">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
+                    <div class="shadow bg-white stick-to-content mb-4">
+                        <div class="bg-dark dark p-4"><h5 class="mb-0">You order</h5></div>
+                        <table class="table-cart">
+
+                            @if (ViewBag.carts != null)
+                            {
+                                foreach (var item in ViewBag.carts as List<Otel.Models.CartModel>)
+                                {
+                                    <tr>
+                                        <td class="title">
+                                            <span class="name"><a href="#productModal" data-toggle="modal"></a>@item.Urun.urunAd</span>
+                                        </td>
+                                        <td class="price">x @item.Quantity</td>
+                                        <td class="price">@item.Urun.urunFiyat</td>
+                                        <td class="actions">
+
+                                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="price">Sepet Boş</td>
+                                </tr>
+                            }
+
+                        </table>
+                        <div class="cart-summary">
+                            <div class="row">
+                                <div class="col-7 text-right text-muted">Toplam:</div>
+                                <div class="col-5"><strong>@ViewBag.totalprice</strong></div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
+                    <div class="bg-white p-4 p-md-5 mb-4">
+                        <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Ödeme</h4>
+                        <div class="row text-lg">
+                            <div class="col-md-6 col-sm-6 form-group">
+                                <label class="custom-control custom-radio">
+                                    <input type="radio" name="payment_type" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>&nbsp;&nbsp;
+                                    <span class="custom-control-description">Nakit</span>
+                                </label>
+                            </div>
+                           
+                            <div class="col-md-6 col-sm-6 form-group">
+                                <label class="custom-control custom-radio">
+                                    <input type="radio" name="payment_type" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>&nbsp;&nbsp;
+                                    <span class="custom-control-description">CheckOut</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-lg"><span>
+                   <a href="@Url.Action("AddSepet", "OdemeTip") ">
+
+                    <span>Ödemeye Git!</span>
+                                   </a>
+                     </span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

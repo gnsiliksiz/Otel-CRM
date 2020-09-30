@@ -1,0 +1,122 @@
+﻿@model Otel.Models.WifiMesaj
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<!-- Content -->
+<div id="content" style="margin-top:0px;">
+
+    <!-- Page Title -->
+    <div class="page-title page-title-lg bg-dark dark" style="height:100px;">
+        <div class="bg-image bg-parallax"><img src="~/WebContent/assets/img/photos/bg-croissant.jpg" alt=""></div>
+        <div class="row">
+            <div class="col-lg-4 push-lg-4 text-center" style="margin-top:-53px;">
+                <h1 class="mb-2">Otel GRMS</h1>
+                <h5 class="text-muted mb-0">Müşteri Otel App</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div style="margin-top:38px;">
+        <div class="page-content pt-0 pull-up-30 protrude">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-xl-8 push-xl-2">
+                        <!-- Blockquote -->
+                        <blockquote class="blockquote blockquote-lg" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.15);">
+                            <div class=" homeButtonsBack" align="center">
+                                <button type="button" class="btn btn-lg homeButtons" style="width:35%" onclick=" location.href='@Url.Action("Index","Kategori")' "><span>RESTORAN</span></button>
+                                <button type="button" class="btn btn-lg homeButtons" style="width:35%" onclick=" location.href='@Url.Action("Index","ArızaWeb")' "><span>ARIZA BİLDİR</span></button>
+                            </div>
+
+
+                        </blockquote>
+                        <!-- Blockquote -->
+                        <blockquote class="blockquote blockquote-lg" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
+                            <div class="homeButtonsBack" align="center">
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick="location.href='@Url.Action("Index","HousekeepingWeb")'"><span>HOUSEKEEP</span></button>
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick=" location.href='@Url.Action("Index","ActiviteWeb")' "><span>AKTİVİTE</span></button>
+
+
+                            </div>
+
+                        </blockquote>
+                        <!-- Blockquote -->
+                        <blockquote class="blockquote blockquote-lg light" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
+                            <div class="homeButtonsBack" align="center">
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick=" location.href='@Url.Action("Index","ResepsiyonWeb")' "><span>RESEPSİYON</span></button>
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick=" location.href='@Url.Action("Index","SpaWeb")' "><span>SPA / MASAJ</span></button>
+
+                            </div>
+
+                        </blockquote>
+                        <!-- Blockquote -->
+                        <blockquote class="blockquote blockquote-lg" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
+                            <div class="homeButtonsBack" align="center">
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick="location.href='@Url.Action("Index","ValeWeb")' "><span>VALE</span></button>
+
+                                <button type="button" class="btn homeButtons2 btn-lg" style="width:35%" onclick=" location.href='@Url.Action("Index","TaksiWeb")' "><span>TAKSİ</span></button>
+                            </div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                            <div align="center">
+                                <button class="btn btn-light-info" align="center " style="color:black" data-toggle="modal" data-target="#reviewModal"><span><i class="fa fa-wifi"><span><b>WİFİ</b></span></i></span></button>
+
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+<!-- Content / End -->
+
+
+
+@*<div class="modal fade" id="reviewModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header dark bg-dark" align="center">
+
+                <h4 class="modal-title">Wifi Şifresi: </h4><br />
+                @Html.DropDownList("wifiID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.wifiID, "", new { @class = "text-danger" })
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Mesajınız</label>
+                        @Html.EditorFor(model => model.wifiText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.wifiText, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+
+                    <div class="text-center">
+                        <button class="btn btn-primary" value="Kaydet">Gönder</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>*@

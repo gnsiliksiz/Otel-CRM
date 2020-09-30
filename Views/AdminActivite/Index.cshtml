@@ -1,0 +1,135 @@
+﻿@model IList<Otel.Models.Activite>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            Aktiviteler
+        </li>
+    </ol>
+</div>
+<br />
+
+
+<a href="/AdminActivite/Create" class="btn btn-danger mb-1 btn-sm">Activite Ekle</a>
+
+@Html.Hidden("activiteID")
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Aktivite Listesi</h3>
+    </div>
+    <!-- /.card-header -->
+
+
+
+
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Adı</th>
+                    <th>Resim</th>
+                    <th>Başlangıç Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                    <th>Durum</th>
+
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.activiteAdi</td>
+
+
+
+                        <td>
+                            @if (item.activiteResim != null)
+                            {
+                                <img src="@item.activiteResim" alt="@item.activiteID" class="rounded-circle" height="30" width="30" />
+                            }
+                        </td>
+                        <td> @Convert.ToDateTime(item.startDate).ToShortDateString() @item.startTime</td>
+                        <td> @Convert.ToDateTime(item.endDate).ToShortDateString() @item.endTime</td>
+                        <td>
+                            @if (item.active == true)
+                            {
+                                <span class="badge badge-success">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Pasif</span>
+                            }
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" onclick="@("window.location.href='"+Url.Action("Edit","AdminActivite", new { activiteID = item.activiteID }) + "'");"><i class="fas fa-pencil-alt"></i> Duzenle</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteActiviteRecord(@item.activiteID)"><i class="fa fa-trash-o">&nbsp </i>Sil</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Activite Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen Activiteyi silmek istediğinize emin misiniz ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Iptal</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteActiviteRecord = function (activiteID) {
+        $("#activiteID").val(activiteID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var activiteID = $("#activiteID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminActivite/DeleteActiviteRecord?activiteID=" + activiteID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminActivite/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

@@ -1,0 +1,69 @@
+﻿@model Otel.Models.Urun
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+
+<h2>Ürün Detayı</h2>
+
+<div class="container">
+    <div class="row">
+
+        <div class="card-group">
+
+
+            <div class="productBox" col-sm-3 col-6">
+
+
+                <div class="card" style="border-radius: 10px;color:#ff0000 ">
+
+
+                    <div class="card-body">
+
+                        <h4 class="card-title"><strong><p class="title">@Model.urunAd</p></strong></h4>
+                        <img class="card-img-top" src="@Model.urunResim" style="width:100%; height:200px; object-fit:cover; border-radius: 10px"><br /><br />
+                        <h5 class="card-title">
+                            <p class="title">
+                                @Model.urunFiyat
+                            </p>
+                        </h5>
+
+                    </div>
+
+
+
+                </div>
+                <br />
+                <p>
+                    @Model.urunAciklama
+                </p>
+                <a href="#" class="btn btn-default"><i class="fa fa-shopping-cart"></i></a>
+            </div>
+
+            </div></div></div>
+
+
+            <style>
+                .productBox {
+                    width: 200px;
+                    float: left;
+                    margin: 10px;
+                    border-radius: 2px;
+                }
+
+
+
+                    .productBox .title {
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    .productBox p {
+                        text-align: center;
+                    }
+            </style>
+       

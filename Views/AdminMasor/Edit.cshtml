@@ -1,0 +1,94 @@
+﻿@model Otel.Models.Masor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "AdminMasor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Masör Düzenle</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.masorID)
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Unvanı</label>
+                                        @Html.DropDownList("spaID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.spaID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Ad Soyad</label>
+                                        @Html.EditorFor(model => model.masorAdSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorAdSoyad, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">TC</label>
+                                        @Html.EditorFor(model => model.masorTC, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorTC, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Doğum Tarihi</label>
+                                        @Html.EditorFor(model => model.masorDogTar, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorDogTar, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Telefon</label>
+                                        @Html.EditorFor(model => model.masorTel, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorTel, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">İzin Durum</label>
+                                        @Html.EditorFor(model => model.masorDurum, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorDurum, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Cinsiyet</label>
+                                        @Html.EditorFor(model => model.masorCinsiyet, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.masorCinsiyet, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-6 form-group file-repeater">
+                                       
+                                        <br /><br />
+
+
+                                        <div class="col form-group p-0" align="center">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

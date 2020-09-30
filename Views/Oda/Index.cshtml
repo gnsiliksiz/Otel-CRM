@@ -1,0 +1,91 @@
+﻿@model IList<Otel.Models.Oda>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            Oda Listesi
+        </li>
+    </ol>
+</div>
+<br />
+
+
+<a href="/Oda/Create/" class="btn btn-danger mb-1 btn-sm">Yeni Oda Ekle</a>
+<br />
+<br />
+
+
+@Html.Hidden("odaID")
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="card" style="border-radius: 10px;">
+                        <img class="card-img-top" src="@Url.Content(item.qrFoto)" alt="Card image" style="width:100%; height:200px; object-fit:cover; border-radius: 10px">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>@item.odaNo</strong></h4>
+                            <p class="card-text">@item.odaKat</p>
+                            <button type="button" class="btn btn-info btn-sm" onclick="@("window.location.href='"+Url.Action("Read","Oda", new { odaID = item.odaID }) + "'");"><i class="fas fa-pencil-alt"></i> Oku</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteOdaRecord(@item.odaID)"><i class="fas fa-trash"></i> Sil</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Bildirimi Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen oda kaydını silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteOdaRecord = function (odaID) {
+        $("#odaID").val(odaID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var odaID = $("#odaID").val();
+        $.ajax({
+            type: "POST",
+            url: "/Oda/DeleteOdaRecord?odaID=" + odaID,
+            success: function (result) {
+                alert("Silme işlemi başarılı!");
+                window.location.href = "/Oda/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

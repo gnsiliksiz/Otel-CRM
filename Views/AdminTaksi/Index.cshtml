@@ -1,0 +1,127 @@
+﻿@model IList<Otel.Models.Taksi>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+
+
+        </li>
+
+        <li class="breadcrumb-item active">
+            <b>Taksiler</b>
+        </li>
+    </ol>
+</div>
+<br />
+<a href="/AdminTaksi/Create" class="btn btn-danger mb-1 btn-sm">Taksi Durağı Ekle</a>
+
+
+
+<br />
+<br />
+@Html.Hidden("taksiID")
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b>Taksi Listesi</b></h3>
+    </div>
+    <!-- /.card-header -->
+
+
+
+
+    <div class="card-body">
+        <table id="example2" class="table  zero-configuration">
+            <thead>
+                <tr>
+                    <th> Ad</th>
+                    <th>Durak Adı</th>
+                    <th>Numara</th>
+                    <th>Adres</th>
+                    <th></th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td>@item.taksiAd</td>
+                    <td>@item.taksiDurakAd</td>
+                    <td>@item.taksiTelefon</td>
+                    <td>@item.taksiAdres</td>
+
+                    <td>
+                        <a><i class="badge-circle badge-circle-light-secondary bx bx-edit font-medium-1" onclick="@("window.location.href='"+Url.Action("Edit","AdminTaksi", new { taksiID = item.taksiID }) + "'");"></i></a>
+                        <br /><br />
+                        <a><i class="badge-circle badge-circle-light-danger bx bx-trash font-medium-1" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteTaksiRecord(@item.taksiID)"></i></a>
+                    </td>
+
+                    
+
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Taksi Bilgilerini Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen taksi numarasını silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-success" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteTaksiRecord = function (taksiID) {
+        $("#taksiID").val(taksiID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var taksiID = $("#taksiID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminTaksi/DeleteTaksiRecord?taksiID=" + taksiID,
+            success: function (result) {
+                alert("Silme islemi Basarili!");
+                window.location.href = "/AdminTaksi/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>
+
+
+
+
+

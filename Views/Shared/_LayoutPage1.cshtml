@@ -1,0 +1,329 @@
+﻿@*@if (Session["username"].ToString() != null)
+    {
+        Response.Redirect("~/404/404.html/");
+    }*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        .cansu {
+            position: relative;
+            left: 0;
+            bottom: 0px;
+            height: 40px;
+            width: 100%;
+            background-color: black;
+            color: black;
+            text-align: center;
+        }
+
+    </style>
+    <!-- Title -->
+    <title>Otel QR</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="~/WebContent/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="~/WebContent/assets/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/WebContent/assets/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/WebContent/assets/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/WebContent/assets/img/favicon_152x152.png">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="~/WebContent/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/WebContent/assets/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="~/WebContent/assets/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="~/WebContent/assets/plugins/animsition/dist/css/animsition.min.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="~/WebContent/assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/WebContent/assets/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="~/WebContent/assets/css/themes/theme-beige.min.css" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="~/Content/OtelCss.css" rel="stylesheet" />
+
+    <link href="~/WebContent/vertical-menu.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body style="margin-top:0px;">
+
+    <!-- Body Wrapper -->
+    <div id="body-wrapper" class="animsition" style="margin-top:0px;">
+
+        <!-- Header -->
+        <header id="header" class="center">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- Logo -->
+
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Navigation -->
+                        <nav class="module module-navigation left mr-4">
+                            <ul id="nav-main" class="nav nav-main">
+                                <li class="has">
+                                    <a href="@Url.Action("Index","Home")">Anasayfa</a>
+                                </li>
+                                <li class="has">
+                                    <a href="@Url.Action("Index","Kategori")">Menü</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    @RenderSection("Sepet", false)
+
+                </div>
+            </div>
+
+        </header>
+        <!-- Header / End -->
+        <!-- Header -->
+        <header id="header-mobile" class="light">
+
+            <div class="module module-nav-toggle">
+                <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+            </div>
+
+
+            @* LOGO GELECEK MOBİLDE GÖRÜB*@
+
+            <div class="module module-logo">
+                <a href="index.html">
+                    <img src="~/WebContent/assets/img/Logo.png" alt="">
+                </a>
+            </div>
+
+            <a href="#" class="module module-cart" data-toggle="panel-cart">
+                <i class="ti ti-shopping-cart"></i>
+                <span class="notification">2</span>
+            </a>
+
+        </header>
+        <!-- Header / End -->
+        <!-- Content -->
+        <div id="content">
+
+            @RenderBody()
+
+
+            <!-- Footer -->
+            <footer id="footer" class="bg-dark dark">
+
+                <div class="container">
+                    <!-- Footer 1st Row -->
+                    <!-- Footer 2nd Row -->
+                    <div class="cansu">
+                        <span class="text-muted">QR OTEL 2020 By Ibernsoft Yazılım</span>
+                    </div>
+                </div>
+
+                <!-- Back To Top -->
+                <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
+
+            </footer>
+
+            <!-- Footer / End -->
+
+        </div>
+        <!-- Content / End -->
+        <!-- Panel Cart -->
+        <!-- Panel Mobile -->
+        <nav id="panel-mobile">
+            <div class="module module-logo bg-light dark">
+                <a href="#">
+                    <img src="~/WebContent/assets/img/Logo.png" alt="" width="88">
+                </a>
+                <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+            </div>
+            <nav class="module module-navigation"></nav>
+            <div class="module module-social">
+                <h6 class="text-sm mb-3">Bizi Takip ET!</h6>
+                <a href="https://ibernsoft.com.tr/" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+                <a href="https://tr.linkedin.com/company/ibernsoft-yaz%C4%B1l%C4%B1m" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-linkedin"></i></a>
+                <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+            </div>
+        </nav>
+
+        <!-- Body Overlay -->
+        <div id="body-overlay"></div>
+
+    </div>
+
+    <!-- Modal / Product -->
+    <div class="modal fade" id="productModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-lg dark bg-dark">
+                    <div class="bg-image"><img src="~/WebContent/assets/img/photos/modal-add.jpg" alt=""></div>
+                    <h4 class="modal-title">Specify your dish</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                </div>
+                <div class="modal-product-details">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <h6 class="mb-0">Boscaiola Pasta</h6>
+                            <span class="text-muted">Pasta, Cheese, Tomatoes, Olives</span>
+                        </div>
+                        <div class="col-3 text-lg text-right">$9.00</div>
+                    </div>
+                </div>
+                <div class="modal-body panel-details-container">
+                    <!-- Panel Details / Size -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_size" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Panel Details / Additions -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_additions" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsAdditions" data-toggle="collapse">Additions</a>
+                        </h5>
+                        <div id="panelDetailsAdditions" class="collapse">
+                            <div class="panel-details-content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Tomato ($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Ham ($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Chicken ($1.29)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Cheese($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Bacon ($1.29)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Panel Details / Other -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_other" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                        </h5>
+                        <div id="panelDetailsOther" class="collapse">
+                            <textarea cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal / Demo -->
+    <div class="modal modal-video fade" id="modalVideo" role="dialog">
+        <button class="close" data-dismiss="modal"><i class="ti-close"></i></button>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <iframe height="500"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Plugins -->
+    <script src="~/WebContent/assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/WebContent/assets/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="~/WebContent/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/WebContent/assets/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="~/WebContent/assets/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="~/WebContent/assets/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+    <script src="~/WebContent/assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="~/WebContent/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/WebContent/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+    <script src="~/WebContent/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+    <script src="~/WebContent/assets/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="~/WebContent/assets/plugins/animsition/dist/js/animsition.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!-- JS Core -->
+
+    <script src="~/WebContent/assets/js/core.js"></script>
+    @RenderSection("script", false);
+    @*<script src="http://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>*@
+
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+</body>
+
+</html>

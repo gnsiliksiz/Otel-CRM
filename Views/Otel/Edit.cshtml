@@ -1,0 +1,76 @@
+﻿@model Otel.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Edit", "Otel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <h5> Kullanıcı Düzenle</h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                @Html.Hidden("userID")
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Kullanıcı adı</label>
+                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                                    </div>
+
+
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Logo</label>
+                                        <div class="col-md-12">
+                                            <input type="file" name="logo" id="logo" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+                                            @Html.ValidationMessageFor(model => model.logo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Şifre</label>
+                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <a href="~/Views/Otel/Edit.cshtml"></a>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        <div class="col-md-10">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.active)
+                                                @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Güncelle" class="btn btn-success" />
+                                        </div>
+                                    </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+

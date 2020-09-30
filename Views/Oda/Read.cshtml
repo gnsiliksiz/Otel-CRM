@@ -1,0 +1,43 @@
+﻿@model Otel.Models.Oda
+
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-md-6">
+    <div class="card card-warning">
+        <div class="card-header">
+            <h3 class="card-title">QR KOD</h3>
+        </div>
+
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-md-2"> Decoded Text from Model</label>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.odaNo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.odaNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2"> QR İmage</label>
+                <div class="col-md-4">
+                    @if (Model != null && !String.IsNullOrEmpty(Model.qrFoto))
+                    {
+                        <img src="@Url.Content(Model.qrFoto)" alt="Image" />
+                    }
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2"> Decoded Text from Model</label>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.qrHash, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.qrHash, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

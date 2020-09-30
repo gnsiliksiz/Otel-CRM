@@ -1,0 +1,192 @@
+﻿@model IList<Otel.Models.Bildirim>
+@{
+    ViewBag.Title = "HousebildirimingBildirim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            <b>Housekeeping Bildirimleri</b>
+        </li>
+    </ol>
+</div>
+<br />
+
+<br />
+<br />
+
+
+<div class="content-body">
+    <!-- table Transactions start -->
+    <section id="table-transactions">
+        <div class="card">
+
+            <!-- datatable start -->
+            <div class="table-responsive">
+                <table id="table-extended-transactions" class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>SEÇ</th>
+                            <th>DURUM</th>
+                            <th>İÇERİK</th>
+                            <th>NEREDEN</th>
+                            <th>KİMDEN</th>
+                            <th>TARİH ve SAAT</th>
+                            <th>SİL</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="checkbox1" value="@item.bildirimID" onchange="changeEvent(this)">
+                                        <label class="form-check-label" for="checkbox1"></label>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    @if (item.bildirimDurum == true)
+                                    {
+
+                                        <div class="badge badge-pill badge-light-success mr-1">Tamamlandı</div>
+                                    }
+                                    else if (item.bildirimDurum == false)
+                                    {
+                                        <div class="badge badge-pill badge-light-danger mr-1">Beklemede </div>
+                                    }
+
+
+                                </td>
+                                <td class="text-bold-600">@item.bildirimİcerik</td>
+                                <td>
+                                    @if (item.bildirimTur == "1")
+                                    {
+                                        <span class="bullet bullet-info bullet-sm"></span>
+                                        <small class="text-muted"><b>Housekeeping</b></small>
+                                    }
+
+                                </td>
+                                <td>@item.odaID</td>
+                                <td><small class="text-muted">@item.bildirimDate</small></td>
+
+                                <td>
+                                    <div>
+                                        <a><i class="badge-circle badge-circle-light-danger bx bx-trash font-medium-1" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteBildirimRecord(@item.bildirimID)"></i></a>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- datatable ends -->
+        </div>
+    </section>
+
+    @Html.Hidden("bildirimID")
+
+    <div>
+        <button align="center" class="btn btn-success glow mr-1 mb-1" onclick="DurumDegistir()"><i class="bx bx-check"></i>Tamamlandı</button>
+
+
+
+
+    </div>
+
+</div>
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Bildirimi Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen bildirimi/bildirimleri silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteBildirimRecord = function (bildirimID) {
+        $("#bildirimID").val(bildirimID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var bildirimID = $("#bildirimID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminBildirim/DeleteBildirimRecord?bildirimID=" + bildirimID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminBildirim/HousekeepingBildirim";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>
+
+
+
+<script>
+
+    var dataList = [];
+
+    var changeEvent = function (e) {
+
+        if (e.checked) {
+            var data = {
+                BildirimId : e.value
+            };
+
+            dataList.push(data);
+
+        }
+
+
+    }
+
+    var DurumDegistir = function () {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GuncelleBildirimDurum","AdminBildirim")',
+            data: { 'model': dataList },
+            success: function (result) {
+                //location.changeEvent();
+                 location.reload();
+                console.log(result);
+
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    }
+
+
+
+</script>

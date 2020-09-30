@@ -1,0 +1,80 @@
+﻿@model Otel.Models.Musteri
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "AdminMusteri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Yeni Müşteri Ekle</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Müşteri  Adı</label>
+                                        @Html.EditorFor(model => model.musteriAdi, new { htmlAttributes = new { @class = "form-control", placeholder = "Adınızı giriniz..", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.musteriAdi, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Muşteri Soyadi</label>
+                                        @Html.EditorFor(model => model.musteriSoyadi, new { htmlAttributes = new { @class = "form-control", placeholder = "Soyadınızı giriniz" } })
+                                        @Html.ValidationMessageFor(model => model.musteriSoyadi, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Muşteri Telefon</label>
+                                        @Html.EditorFor(model => model.musteriTelefon, new { htmlAttributes = new { @class = "form-control", placeholder = "(5xx)xxx xx xx" } })
+                                        @Html.ValidationMessageFor(model => model.musteriTelefon, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">TC</label>
+                                        @Html.EditorFor(model => model.musteriTC, new { htmlAttributes = new { @class = "form-control", placeholder = "11 haneli TC kimlik numaranızı giriniz", @maxlength = 10, @type = "number" } })
+                                        @Html.ValidationMessageFor(model => model.musteriTC, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Doğum Tarihi</label>
+                                        @Html.EditorFor(model => model.musteriDogTar, new { htmlAttributes = new { @class = "form-control pickadate", placeholder = "GG.AA.YY", @type = "date" } })
+                                        @Html.ValidationMessageFor(model => model.musteriDogTar, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                         <label class="control-label col-md-6">Durum</label>
+                                          @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                          @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                     </div>
+                                  
+
+
+
+                                    <div class="col form-group p-0">
+                                        <div class="col-md-offset-4 col-md-10">
+                                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

@@ -1,0 +1,61 @@
+﻿@model IList<Otel.Models.WifiMesaj>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            Wifi Mesajları
+        </li>
+    </ol>
+</div>
+<br />
+<div class="col-lg-5">
+    <div class="card widget-notification">
+        <div class="card-header border-bottom">
+            <h4 class="card-title d-flex align-items-center">
+                <i class='bx bx-wifi font-medium-4 mr-1'></i>Wifi Mesajları
+            </h4>
+            <div class="heading-elements">
+                <button type="button" class="btn btn-sm btn-light-primary">Tümünü Gör</button>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-body p-0">
+                
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action border-0 d-flex align-items-center justify-content-between">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="list-left d-flex">
+                                    <div class="list-icon mr-1">
+                                        <div class="avatar bg-rgba-primary m-0 p-25">
+                                            <div class="avatar-content">
+                                                <i class="bx bx-message-alt text-primary font-medium-4"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-content">
+                                        <span class="list-title">@item.wifiText</span>
+                                        <span class="list-title">@item.Date</span>
+                                        <small class="text-muted d-block"></small>
+                                    </div>                                
+                                </div>
+                            }
+                        </li>
+
+                    </ul>
+                
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@model Otel.Models.Ariza
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "AdminRepair", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Yeni Arıza Kaydı Ekle</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Housekeeping Adı</label>
+                                        @Html.EditorFor(model => model.arizaAd, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.arizaAd, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        <select name="Interested_in" class="form-control">
+                                            <option value="male">Aktif</option>
+                                            <option value="female">Pasif</option>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="col-6 form-group file-repeater">
+
+                                        <br /><br />
+                                        <div class="col form-group p-0">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <br /><br />
+                                        <div>
+                                            @Html.ActionLink("Geri Dön", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+
+
+
+

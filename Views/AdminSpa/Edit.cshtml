@@ -1,0 +1,103 @@
+﻿@model Otel.Models.Spa
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "AdminSpa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("spaID")
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Spa/Masaj Düzenle</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Adı</label>
+                                        @Html.EditorFor(model => model.spaAd, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.spaAd, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Açıklama</label>
+                                        @Html.EditorFor(model => model.spaAciklama, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.spaAciklama, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    @*<div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        <select name="Interested_in" class="form-control">
+                                            <option value="male">Aktif</option>
+                                            <option value="female">Pasif</option>
+                                        </select>
+
+                                    </div>*@
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Masaj Sure</label>
+                                        @Html.EditorFor(model => model.spaSuresi, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.spaSuresi, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Fiyat</label>
+                                        @Html.EditorFor(model => model.spaFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.spaFiyat, "", new { @class = "text-danger" })
+                                    </div>
+
+
+
+
+
+
+                                    <div class="col-6 form-group file-repeater">
+                                        <div data-repeater-list="repeater-list">
+                                            <div data-repeater-item>
+                                                <div class="row mb-3">
+                                                    <div class="col-xl-12 col-lg-12">
+                                                        <label class="control-label col-md-6">Resim</label>
+                                                        <input type="file" name="spaResim" id="spaResim" value="" accept=".jpg,.png,.gif,.JPEG,.jpeg" class="form-control" />
+                                                        @Html.ValidationMessageFor(model => model.spaResim, "", new { @class = "text-danger" })
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br /><br />
+
+
+                                        <div class="col form-group p-0" align="center">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Güncelle" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

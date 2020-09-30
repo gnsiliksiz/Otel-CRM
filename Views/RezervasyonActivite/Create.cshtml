@@ -1,0 +1,92 @@
+﻿@model Otel.Models.RezervasyonActivite
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+@using (Ajax.BeginForm("Create", "RezervasyonActivite", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="divEmp">
+        <div id="content">
+
+            <!-- Section -->
+            <section class="section section-lg bg-dark">
+
+                <!-- Video BG -->
+                @*<div class="bg-img" data-property="{videoURL:'https://youtu.be/t4gN-iqeY0E', showControls: false, containment:'self',startAt:1,stopAt:39,mute:true,autoPlay:true,loop:true,opacity:0.8,quality:'hd1080'}"></div>*@
+                <div class="bg-image bg-image zooming"><img src="/~WebContent/assets/img/photos/bg-restaurant.jpg" alt=""></div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 push-lg-3">
+                            <!-- Book a Table -->
+                            <div class="utility-box">
+                                <div class="utility-box-title bg-dark dark">
+                                    <div class="bg-image"><img src="assets/img/photos/modal-review.jpg" alt=""></div>
+                                    <div>
+                                        <span class="icon icon-primary"><i class="ti ti-bookmark-alt"></i></span>
+                                        <h4 class="mb-0">Aktivite Talep Formu</h4>
+                                        <p class="lead text-muted mb-0">Buradan aktiviteler için bilgi talep edebilir ve rezervasyon oluşturabilirsiniz.</p>
+                                    </div>
+                                </div>
+
+
+
+                                <form action="#" id="booking-form" data-validate>
+                                    <div class="utility-box-content" align="center">
+                                        <div class="form-group col-md-10">
+                                            <label>Aktivite Tür Seç</label>
+                                            @Html.DropDownList("activiteID", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.activiteID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-6">Kişi Sayısı</label>
+                                            <div class="col-md-10">                                          
+                                                @Html.EditorFor(model => model.kisiSayisi, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.kisiSayisi, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" value="Kaydet" type="submit">
+                                        <span class="description">Bilgi Talep Et!</span>
+                                        <span class="success">
+                                            <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11" /></svg>
+                                        </span>
+                                        <span class="error">Try again...</span>
+                                    </button>
+                                  
+                                   
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+        </div>
+    </div>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function OnSuccess(data) {
+        swal("Başarılı!", "Talebiniz yetkili birimimize iletilmiştir.", "success");
+        setTimeout(function () { location.reload(); }, 2000)
+    }
+
+    function OnFailure(xhr, status) {
+        alert('Error: ' + xhr.statusText);
+    }
+</script>
+

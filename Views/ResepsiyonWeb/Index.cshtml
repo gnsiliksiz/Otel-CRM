@@ -1,0 +1,73 @@
+﻿@model IList<Otel.Models.Reception>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-2">
+                <!-- Product Single -->
+                <div class="product-single">
+                    <div class="product-image">
+                        <img src="~/WebContent/assets/img/photos/product-single.jpg" alt="">
+                    </div>
+                    <div class="product-content">
+                        <div class="backButton" style="left:13px;">
+                            <a href="/Home/Index" class="module module-cart">
+                                <i class="fa fa-arrow-left" style="font-size:23px;color:#666464"></i>
+                            </a>
+                        </div>
+
+                        <h3 class="product-title" align="center"><b>Resepsiyon</b></h3>
+                        <span class="product-caption text-muted" align="center">Buradan resepsiyon ile ilgili taleplerde bulunabilirsiniz.</span>
+                        <hr class="hr-primary">
+
+                        <div class="panel-details-container" align="center">
+                            @foreach (var item in Model)
+                            {
+
+
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#demoModal"><span>Resepsiyonu Ara</span></button>
+
+
+
+                                <div class="modal fade" id="demoModal" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">Call Reception</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><h3><b>@item.receptionNumara</b></h3></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Vazgeç</button>
+
+                                                <div class="col-md-2 col-sm-12">
+                                                    <button class="btn btn-primary copy-btn">Copy!</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="text-center mt-4">
+                                <a href="@Url.Action("Index","Home")" class="btn btn-link">Anasayfaya Dön</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

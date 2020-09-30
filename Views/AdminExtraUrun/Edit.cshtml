@@ -1,0 +1,85 @@
+﻿@model Otel.Models.ExtraUrun
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "AdminExtraUrun", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <b>
+                                Extra Urun
+                                duzenle
+                            </b>
+                        </h4>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                @Html.HiddenFor(model => model.extraUrunID)
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Urun Seç</label>
+
+                                        @Html.DropDownList("urunID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.urunID, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Extra ürün Adı</label>
+                                        @Html.EditorFor(model => model.extraUrunAdi, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.extraUrunAdi, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Extra ürün fiyat</label>
+                                        @Html.EditorFor(model => model.extraUrunFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.extraUrunFiyat, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Extra ürün adet</label>
+                                        @Html.EditorFor(model => model.extraUrunAdet, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.extraUrunAdet, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-6 form-group file-repeater">
+
+
+                                        <div class="col form-group p-0" align="center">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>
+

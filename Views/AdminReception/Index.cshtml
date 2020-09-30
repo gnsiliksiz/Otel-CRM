@@ -1,0 +1,117 @@
+﻿@model IList<Otel.Models.Reception>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+
+
+        </li>
+
+        <li class="breadcrumb-item active">
+            Resepsiyon Yönetimi
+        </li>
+    </ol>
+</div>
+<br />
+<a href="/AdminReception/Create" class="btn btn-danger mb-1 btn-sm">Resepsiyon Numarası Ekle</a>
+
+
+
+<br />
+<br />
+@Html.Hidden("receptionID")
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b> Resepsiyon Numara Listesi </b></h3>
+    </div>
+    <!-- /.card-header -->
+
+
+
+
+    <div class="card-body">
+        <table class="table zero-configuration">
+            <thead>
+                <tr>
+                    <th>Resepsiyon Numara</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.receptionNumara</td>
+
+
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" onclick="@("window.location.href='"+Url.Action("Edit","AdminReception", new { receptionID = item.receptionID }) + "'");"><i class="fas fa-pencil-alt"></i> Duzenle</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteReceptionRecord(@item.receptionID)"><i class="fa fa-trash-o">&nbsp </i>Sil</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Resepsiyon Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen resepsiyon bilgilerini silmek istediğinize emin misiniz ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-success" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteReceptionRecord = function (receptionID) {
+        $("#receptionID").val(receptionID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var receptionID = $("#receptionID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminReception/DeleteReceptionRecord?receptionID=" + receptionID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminReception/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

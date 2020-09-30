@@ -1,0 +1,131 @@
+﻿@model IList<Otel.Models.Musteri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            Müşteri Listesi
+        </li>
+    </ol>
+</div>
+<br />
+
+<br />
+<br />
+<a href="/AdminMusteri/Create" class="btn btn-danger mb-1 btn-sm">Yeni Müşteri Ekle</a>
+
+@Html.Hidden("musteriID")
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><b>Müşteri Listesi</b></h3>
+    </div>
+    <!-- /.card-header -->
+
+
+
+
+    <div class="card-body">
+        <table id="example2" class="table zero-configuration">
+            <thead>
+                <tr>
+                    <th> Adı</th>
+                    <th>Soyadı</th>
+                    <th>TC</th>
+
+                    <th>Telefon</th>
+                    <th>Dogum Tarihi</th>
+
+                    <th>Durum</th>
+
+                    <th>Düzenle</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.musteriAdi</td>
+                        <td>@item.musteriSoyadi</td>
+                        <td>@item.musteriTC</td>
+                        <td>@item.musteriTelefon</td>
+                        <td>@Convert.ToDateTime(item.musteriDogTar).ToShortDateString()</td>
+
+
+                        <td>
+                            @if (item.active == true)
+                            {
+                                <span class="badge badge-success">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Pasif</span>
+                            }
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs" style="width:5%;" onclick="@("window.location.href='"+Url.Action("Edit","AdminMusteri", new { musteriID = item.musteriID }) + "'");"><i class="bx bx-edit mt-0"></i></button>
+                            <button type="button" class="btn btn-danger btn-xs" style="width:5%;" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteMusteriRecord(@item.musteriID)"><i class="bx bx-trash">&nbsp </i></button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Kullanıcı Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen Kullanıcıyı silmek istediğinize emin misiniz ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Iptal</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteMusteriRecord = function (musteriID) {
+        $("#musteriID").val(musteriID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var musteriID = $("#musteriID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminMusteri/DeleteMusteriRecord?musteriID=" + musteriID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminMusteri/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

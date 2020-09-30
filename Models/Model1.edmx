@@ -1,0 +1,1916 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OtelQrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activite">
+          <Key>
+            <PropertyRef Name="activiteID" />
+          </Key>
+          <Property Name="activiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activiteResim" Type="nvarchar(max)" />
+          <Property Name="activiteAciklama" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+          <Property Name="activiteFiyat" Type="money" />
+          <Property Name="createDate" Type="date" />
+          <Property Name="kontenjan" Type="int" />
+          <Property Name="activiteAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Restoran" Type="bit" />
+          <Property Name="Konaklama" Type="bit" />
+          <Property Name="activiteYer" Type="nvarchar" MaxLength="50" />
+          <Property Name="activiteSure" Type="nvarchar" MaxLength="50" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="startTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="endTime" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ariza">
+          <Key>
+            <PropertyRef Name="arizaID" />
+          </Key>
+          <Property Name="arizaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arizaAd" Type="nvarchar(max)" />
+          <Property Name="arizaMesaj" Type="nvarchar(max)" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="arizaDurum" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="isSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Bildirim">
+          <Key>
+            <PropertyRef Name="bildirimID" />
+          </Key>
+          <Property Name="bildirimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bildirimTur" Type="nvarchar" MaxLength="50" />
+          <Property Name="bildirimİcerik" Type="nvarchar" MaxLength="50" />
+          <Property Name="bildirimDurum" Type="bit" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="bildirimDate" Type="datetime" />
+          <Property Name="isChecked" Type="bit" />
+        </EntityType>
+        <EntityType Name="Duyuru">
+          <Key>
+            <PropertyRef Name="duyuruID" />
+          </Key>
+          <Property Name="duyuruID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="duyuruZaman" Type="datetime" />
+          <Property Name="duyuruTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="duyuruIcerik" Type="nvarchar(max)" />
+          <Property Name="duyuruSira" Type="int" />
+          <Property Name="duyuruDurum" Type="bit" />
+        </EntityType>
+        <EntityType Name="ExtraUrun">
+          <Key>
+            <PropertyRef Name="extraUrunID" />
+          </Key>
+          <Property Name="extraUrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="extraUrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="extraUrunFiyat" Type="money" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="active" Type="bit" />
+          <Property Name="isSelected" Type="bit" />
+          <Property Name="extraUrunAdet" Type="int" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="kategoriSira" Type="int" />
+          <Property Name="kategoriResim" Type="nvarchar(max)" />
+          <Property Name="isSelected" Type="bit" />
+          <Property Name="kategoriDurum" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Keep">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keepID" Type="int" Nullable="false" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="keepAd" Type="nvarchar(max)" />
+          <Property Name="keepMesaj" Type="nvarchar(max)" />
+          <Property Name="keepDurum" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="isSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Masor">
+          <Key>
+            <PropertyRef Name="masorID" />
+          </Key>
+          <Property Name="masorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masorAdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="masorTC" Type="nvarchar" MaxLength="50" />
+          <Property Name="masorCinsiyet" Type="bit" />
+          <Property Name="masorDogTar" Type="date" />
+          <Property Name="spaID" Type="int" />
+          <Property Name="masorTel" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" />
+          <Property Name="masorDurum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="musteriAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="musteriSoyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="musteriTC" Type="nvarchar" MaxLength="50" />
+          <Property Name="musteriTelefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="createDate" Type="date" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="musteriDurum" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="musteriTip" Type="bit" />
+          <Property Name="musteriDogTar" Type="date" />
+          <Property Name="musteriCinsiyet" Type="bit" />
+        </EntityType>
+        <EntityType Name="Oda">
+          <Key>
+            <PropertyRef Name="odaID" />
+          </Key>
+          <Property Name="odaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odaNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="odaKat" Type="int" />
+          <Property Name="odaKatgorevli" Type="nvarchar" MaxLength="50" />
+          <Property Name="qrHash" Type="nchar" MaxLength="16" />
+          <Property Name="qrUrl" Type="nvarchar(max)" />
+          <Property Name="qrFoto" Type="nvarchar(max)" />
+          <Property Name="userID" Type="int" />
+        </EntityType>
+        <EntityType Name="Reception">
+          <Key>
+            <PropertyRef Name="receptionID" />
+          </Key>
+          <Property Name="receptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="receptionNumara" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="RezervasyonActivite">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activiteID" Type="int" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="active" Type="bit" />
+          <Property Name="kisiSayisi" Type="int" />
+          <Property Name="createAt" Type="date" />
+          <Property Name="updateAt" Type="date" />
+          <Property Name="rezervasyonİcerik" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RezervasyonSpa">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masorID" Type="int" />
+          <Property Name="musteriID" Type="int" />
+          <Property Name="tarih" Type="date" />
+          <Property Name="saat" Type="time" Precision="7" />
+          <Property Name="musterigeldimi" Type="bit" />
+          <Property Name="masorgeldimi" Type="bit" />
+          <Property Name="active" Type="bit" />
+          <Property Name="createDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Sepet">
+          <Key>
+            <PropertyRef Name="sepetID" />
+          </Key>
+          <Property Name="sepetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="urunMiktar" Type="int" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="isSelected" Type="bit" />
+          <Property Name="urunToplamFiyat" Type="float" />
+          <Property Name="SepetDurum" Type="bit" />
+          <Property Name="SepetZaman" Type="datetime" />
+          <Property Name="SepetTur" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="siparisZaman" Type="datetime" />
+          <Property Name="siparisToplam" Type="float" />
+          <Property Name="siparisNo" Type="int" />
+          <Property Name="isSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="SiparisDetay">
+          <Key>
+            <PropertyRef Name="siparisDetayID" />
+          </Key>
+          <Property Name="siparisDetayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="siparisID" Type="int" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="urunFiyat" Type="float" />
+          <Property Name="urunMiktar" Type="int" />
+          <Property Name="isSelected" Type="bit" />
+        </EntityType>
+        <EntityType Name="Spa">
+          <Key>
+            <PropertyRef Name="spaID" />
+          </Key>
+          <Property Name="spaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spaAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="spaAciklama" Type="nvarchar(max)" />
+          <Property Name="spaResim" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+          <Property Name="spaFiyat" Type="money" />
+          <Property Name="spaSuresi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Taksi">
+          <Key>
+            <PropertyRef Name="taksiID" />
+          </Key>
+          <Property Name="taksiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taksiDurakAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="taksiAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="taksiTelefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="taksiAdres" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunAd" Type="nvarchar(max)" />
+          <Property Name="urunFiyat" Type="money" />
+          <Property Name="urunResim" Type="nvarchar(max)" />
+          <Property Name="kategoriID" Type="int" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="urunStok" Type="int" />
+          <Property Name="urunDurum" Type="bit" />
+          <Property Name="userID" Type="int" />
+          <Property Name="urun" Type="nchar" MaxLength="10" />
+          <Property Name="isSelected" Type="bit" />
+          <Property Name="urunAciklama" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UrunMesaj">
+          <Key>
+            <PropertyRef Name="urunMesajID" />
+          </Key>
+          <Property Name="urunMesajID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunMesajText" Type="nvarchar(max)" />
+          <Property Name="urunID" Type="int" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="logo" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+          <Property Name="yetkiID" Type="int" />
+          <Property Name="userZaman" Type="datetime" />
+          <Property Name="userDurum" Type="bit" />
+          <Property Name="userAdSoyad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vale">
+          <Key>
+            <PropertyRef Name="valeID" />
+          </Key>
+          <Property Name="valeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valeMesaj" Type="nvarchar" MaxLength="50" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="active" Type="bit" />
+          <Property Name="valeDurum" Type="bit" />
+          <Property Name="createDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Wifi">
+          <Key>
+            <PropertyRef Name="wifiID" />
+          </Key>
+          <Property Name="wifiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wifiAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="wifiPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" />
+          <Property Name="odaID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WifiMesaj">
+          <Key>
+            <PropertyRef Name="wifiMesajID" />
+          </Key>
+          <Property Name="wifiMesajID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="wifiID" Type="int" />
+          <Property Name="wifiText" Type="nvarchar(max)" />
+          <Property Name="wifiBildirimSayi" Type="int" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="yetkiID" />
+          </Key>
+          <Property Name="yetkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yetkiAd" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Ariza_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Ariza" Type="Self.Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Ariza">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bildirim_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Bildirim">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtraUrun_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExtraUrun" Type="Self.ExtraUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="ExtraUrun">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keep_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Keep" Type="Self.Keep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Keep">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masor_Spa">
+          <End Role="Spa" Type="Self.Spa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Masor" Type="Self.Masor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spa">
+              <PropertyRef Name="spaID" />
+            </Principal>
+            <Dependent Role="Masor">
+              <PropertyRef Name="spaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Musteri_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Musteri">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oda_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Oda" Type="Self.Oda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Oda">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonActivite_Activite">
+          <End Role="Activite" Type="Self.Activite" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonActivite" Type="Self.RezervasyonActivite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="activiteID" />
+            </Principal>
+            <Dependent Role="RezervasyonActivite">
+              <PropertyRef Name="activiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonActivite_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonActivite" Type="Self.RezervasyonActivite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="RezervasyonActivite">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonSpa_Masor">
+          <End Role="Masor" Type="Self.Masor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonSpa" Type="Self.RezervasyonSpa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masor">
+              <PropertyRef Name="masorID" />
+            </Principal>
+            <Dependent Role="RezervasyonSpa">
+              <PropertyRef Name="masorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonSpa_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonSpa" Type="Self.RezervasyonSpa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="RezervasyonSpa">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="siparisID" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="siparisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunMesaj_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UrunMesaj" Type="Self.UrunMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="UrunMesaj">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="yetkiID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="yetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vale_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vale" Type="Self.Vale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Vale">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wifi_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Wifi" Type="Self.Wifi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Wifi">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WifiMesaj_Wifi">
+          <End Role="Wifi" Type="Self.Wifi" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WifiMesaj" Type="Self.WifiMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wifi">
+              <PropertyRef Name="wifiID" />
+            </Principal>
+            <Dependent Role="WifiMesaj">
+              <PropertyRef Name="wifiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OtelQrModelStoreContainer">
+          <EntitySet Name="Activite" EntityType="Self.Activite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ariza" EntityType="Self.Ariza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bildirim" EntityType="Self.Bildirim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExtraUrun" EntityType="Self.ExtraUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keep" EntityType="Self.Keep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masor" EntityType="Self.Masor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oda" EntityType="Self.Oda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reception" EntityType="Self.Reception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RezervasyonActivite" EntityType="Self.RezervasyonActivite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RezervasyonSpa" EntityType="Self.RezervasyonSpa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sepet" EntityType="Self.Sepet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiparisDetay" EntityType="Self.SiparisDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spa" EntityType="Self.Spa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taksi" EntityType="Self.Taksi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunMesaj" EntityType="Self.UrunMesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vale" EntityType="Self.Vale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wifi" EntityType="Self.Wifi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WifiMesaj" EntityType="Self.WifiMesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ariza_Oda" Association="Self.FK_Ariza_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Ariza" EntitySet="Ariza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bildirim_Oda" Association="Self.FK_Bildirim_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Bildirim" EntitySet="Bildirim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtraUrun_Urun" Association="Self.FK_ExtraUrun_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="ExtraUrun" EntitySet="ExtraUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keep_Oda" Association="Self.FK_Keep_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Keep" EntitySet="Keep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masor_Spa" Association="Self.FK_Masor_Spa">
+            <End Role="Spa" EntitySet="Spa" />
+            <End Role="Masor" EntitySet="Masor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Musteri_Oda" Association="Self.FK_Musteri_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Musteri" EntitySet="Musteri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oda_User" Association="Self.FK_Oda_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Oda" EntitySet="Oda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonActivite_Activite" Association="Self.FK_RezervasyonActivite_Activite">
+            <End Role="Activite" EntitySet="Activite" />
+            <End Role="RezervasyonActivite" EntitySet="RezervasyonActivite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonActivite_Musteri" Association="Self.FK_RezervasyonActivite_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="RezervasyonActivite" EntitySet="RezervasyonActivite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonSpa_Masor" Association="Self.FK_RezervasyonSpa_Masor">
+            <End Role="Masor" EntitySet="Masor" />
+            <End Role="RezervasyonSpa" EntitySet="RezervasyonSpa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonSpa_Musteri" Association="Self.FK_RezervasyonSpa_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="RezervasyonSpa" EntitySet="RezervasyonSpa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Oda" Association="Self.FK_Sepet_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Urun" Association="Self.FK_Sepet_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Sepet" EntitySet="Sepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Oda" Association="Self.FK_Siparis_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Siparis" Association="Self.FK_SiparisDetay_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Urun" Association="Self.FK_SiparisDetay_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_User" Association="Self.FK_Urun_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunMesaj_Urun" Association="Self.FK_UrunMesaj_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="UrunMesaj" EntitySet="UrunMesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Yetki" Association="Self.FK_User_Yetki">
+            <End Role="Yetki" EntitySet="Yetki" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vale_Oda" Association="Self.FK_Vale_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Vale" EntitySet="Vale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wifi_Oda" Association="Self.FK_Wifi_Oda">
+            <End Role="Oda" EntitySet="Oda" />
+            <End Role="Wifi" EntitySet="Wifi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WifiMesaj_Wifi" Association="Self.FK_WifiMesaj_Wifi">
+            <End Role="Wifi" EntitySet="Wifi" />
+            <End Role="WifiMesaj" EntitySet="WifiMesaj" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OtelQrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activite">
+          <Key>
+            <PropertyRef Name="activiteID" />
+          </Key>
+          <Property Name="activiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activiteResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="activiteAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="activiteFiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="kontenjan" Type="Int32" />
+          <Property Name="activiteAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Restoran" Type="Boolean" />
+          <Property Name="Konaklama" Type="Boolean" />
+          <Property Name="activiteYer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="activiteSure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="endTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RezervasyonActivites" Relationship="Self.FK_RezervasyonActivite_Activite" FromRole="Activite" ToRole="RezervasyonActivite" />
+        </EntityType>
+        <EntityType Name="Ariza">
+          <Key>
+            <PropertyRef Name="arizaID" />
+          </Key>
+          <Property Name="arizaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arizaAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="arizaMesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="arizaDurum" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="isSelected" Type="Boolean" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Ariza_Oda" FromRole="Ariza" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Bildirim">
+          <Key>
+            <PropertyRef Name="bildirimID" />
+          </Key>
+          <Property Name="bildirimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bildirimTur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bildirimİcerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bildirimDurum" Type="Boolean" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="bildirimDate" Type="DateTime" Precision="3" />
+          <Property Name="isChecked" Type="Boolean" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Bildirim_Oda" FromRole="Bildirim" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Duyuru">
+          <Key>
+            <PropertyRef Name="duyuruID" />
+          </Key>
+          <Property Name="duyuruID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="duyuruZaman" Type="DateTime" Precision="3" />
+          <Property Name="duyuruTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duyuruIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="duyuruSira" Type="Int32" />
+          <Property Name="duyuruDurum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ExtraUrun">
+          <Key>
+            <PropertyRef Name="extraUrunID" />
+          </Key>
+          <Property Name="extraUrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="extraUrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="extraUrunFiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="isSelected" Type="Boolean" />
+          <Property Name="extraUrunAdet" Type="Int32" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_ExtraUrun_Urun" FromRole="ExtraUrun" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="kategoriSira" Type="Int32" />
+          <Property Name="kategoriResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isSelected" Type="Boolean" />
+          <Property Name="kategoriDurum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Uruns" Relationship="Self.FK_Urun_Kategori" FromRole="Kategori" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Keep">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="keepID" Type="Int32" Nullable="false" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="keepAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="keepMesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="keepDurum" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="isSelected" Type="Boolean" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Keep_Oda" FromRole="Keep" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Masor">
+          <Key>
+            <PropertyRef Name="masorID" />
+          </Key>
+          <Property Name="masorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masorAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="masorTC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="masorCinsiyet" Type="Boolean" />
+          <Property Name="masorDogTar" Type="DateTime" Precision="0" />
+          <Property Name="spaID" Type="Int32" />
+          <Property Name="masorTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="masorDurum" Type="Boolean" />
+          <NavigationProperty Name="Spa" Relationship="Self.FK_Masor_Spa" FromRole="Masor" ToRole="Spa" />
+          <NavigationProperty Name="RezervasyonSpas" Relationship="Self.FK_RezervasyonSpa_Masor" FromRole="Masor" ToRole="RezervasyonSpa" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="musteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriTC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="0" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="musteriDurum" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="musteriTip" Type="Boolean" />
+          <Property Name="musteriDogTar" Type="DateTime" Precision="0" />
+          <Property Name="musteriCinsiyet" Type="Boolean" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Musteri_Oda" FromRole="Musteri" ToRole="Oda" />
+          <NavigationProperty Name="RezervasyonActivites" Relationship="Self.FK_RezervasyonActivite_Musteri" FromRole="Musteri" ToRole="RezervasyonActivite" />
+          <NavigationProperty Name="RezervasyonSpas" Relationship="Self.FK_RezervasyonSpa_Musteri" FromRole="Musteri" ToRole="RezervasyonSpa" />
+        </EntityType>
+        <EntityType Name="Oda">
+          <Key>
+            <PropertyRef Name="odaID" />
+          </Key>
+          <Property Name="odaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odaNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="odaKat" Type="Int32" />
+          <Property Name="odaKatgorevli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qrHash" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="qrUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="qrFoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="Arizas" Relationship="Self.FK_Ariza_Oda" FromRole="Oda" ToRole="Ariza" />
+          <NavigationProperty Name="Bildirims" Relationship="Self.FK_Bildirim_Oda" FromRole="Oda" ToRole="Bildirim" />
+          <NavigationProperty Name="Keeps" Relationship="Self.FK_Keep_Oda" FromRole="Oda" ToRole="Keep" />
+          <NavigationProperty Name="Musteris" Relationship="Self.FK_Musteri_Oda" FromRole="Oda" ToRole="Musteri" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Oda_User" FromRole="Oda" ToRole="User" />
+          <NavigationProperty Name="Sepets" Relationship="Self.FK_Sepet_Oda" FromRole="Oda" ToRole="Sepet" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Oda" FromRole="Oda" ToRole="Siparis" />
+          <NavigationProperty Name="Vales" Relationship="Self.FK_Vale_Oda" FromRole="Oda" ToRole="Vale" />
+          <NavigationProperty Name="Wifis" Relationship="Self.FK_Wifi_Oda" FromRole="Oda" ToRole="Wifi" />
+        </EntityType>
+        <EntityType Name="Reception">
+          <Key>
+            <PropertyRef Name="receptionID" />
+          </Key>
+          <Property Name="receptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="receptionNumara" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RezervasyonActivite">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activiteID" Type="Int32" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="kisiSayisi" Type="Int32" />
+          <Property Name="createAt" Type="DateTime" Precision="0" />
+          <Property Name="updateAt" Type="DateTime" Precision="0" />
+          <Property Name="rezervasyonİcerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activite" Relationship="Self.FK_RezervasyonActivite_Activite" FromRole="RezervasyonActivite" ToRole="Activite" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_RezervasyonActivite_Musteri" FromRole="RezervasyonActivite" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="RezervasyonSpa">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masorID" Type="Int32" />
+          <Property Name="musteriID" Type="Int32" />
+          <Property Name="tarih" Type="DateTime" Precision="0" />
+          <Property Name="saat" Type="Time" Precision="7" />
+          <Property Name="musterigeldimi" Type="Boolean" />
+          <Property Name="masorgeldimi" Type="Boolean" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Masor" Relationship="Self.FK_RezervasyonSpa_Masor" FromRole="RezervasyonSpa" ToRole="Masor" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_RezervasyonSpa_Musteri" FromRole="RezervasyonSpa" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="Sepet">
+          <Key>
+            <PropertyRef Name="sepetID" />
+          </Key>
+          <Property Name="sepetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="urunMiktar" Type="Int32" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="isSelected" Type="Boolean" />
+          <Property Name="urunToplamFiyat" Type="Double" />
+          <Property Name="SepetDurum" Type="Boolean" />
+          <Property Name="SepetZaman" Type="DateTime" Precision="3" />
+          <Property Name="SepetTur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Sepet_Oda" FromRole="Sepet" ToRole="Oda" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Sepet_Urun" FromRole="Sepet" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Sipari">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="siparisZaman" Type="DateTime" Precision="3" />
+          <Property Name="siparisToplam" Type="Double" />
+          <Property Name="siparisNo" Type="Int32" />
+          <Property Name="isSelected" Type="Boolean" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Siparis_Oda" FromRole="Siparis" ToRole="Oda" />
+          <NavigationProperty Name="SiparisDetays" Relationship="Self.FK_SiparisDetay_Siparis" FromRole="Siparis" ToRole="SiparisDetay" />
+        </EntityType>
+        <EntityType Name="SiparisDetay">
+          <Key>
+            <PropertyRef Name="siparisDetayID" />
+          </Key>
+          <Property Name="siparisDetayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="siparisID" Type="Int32" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="urunFiyat" Type="Double" />
+          <Property Name="urunMiktar" Type="Int32" />
+          <Property Name="isSelected" Type="Boolean" />
+          <NavigationProperty Name="Sipari" Relationship="Self.FK_SiparisDetay_Siparis" FromRole="SiparisDetay" ToRole="Siparis" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_SiparisDetay_Urun" FromRole="SiparisDetay" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Spa">
+          <Key>
+            <PropertyRef Name="spaID" />
+          </Key>
+          <Property Name="spaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spaAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="spaAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="spaResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="spaFiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="spaSuresi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Masors" Relationship="Self.FK_Masor_Spa" FromRole="Spa" ToRole="Masor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Taksi">
+          <Key>
+            <PropertyRef Name="taksiID" />
+          </Key>
+          <Property Name="taksiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taksiDurakAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taksiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taksiTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taksiAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="urunFiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="urunResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kategoriID" Type="Int32" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="urunStok" Type="Int32" />
+          <Property Name="urunDurum" Type="Boolean" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="urun1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="isSelected" Type="Boolean" />
+          <Property Name="urunAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ExtraUruns" Relationship="Self.FK_ExtraUrun_Urun" FromRole="Urun" ToRole="ExtraUrun" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
+          <NavigationProperty Name="Sepets" Relationship="Self.FK_Sepet_Urun" FromRole="Urun" ToRole="Sepet" />
+          <NavigationProperty Name="SiparisDetays" Relationship="Self.FK_SiparisDetay_Urun" FromRole="Urun" ToRole="SiparisDetay" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Urun_User" FromRole="Urun" ToRole="User" />
+          <NavigationProperty Name="UrunMesajs" Relationship="Self.FK_UrunMesaj_Urun" FromRole="Urun" ToRole="UrunMesaj" />
+        </EntityType>
+        <EntityType Name="UrunMesaj">
+          <Key>
+            <PropertyRef Name="urunMesajID" />
+          </Key>
+          <Property Name="urunMesajID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunMesajText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="urunID" Type="Int32" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_UrunMesaj_Urun" FromRole="UrunMesaj" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="yetkiID" Type="Int32" />
+          <Property Name="userZaman" Type="DateTime" Precision="3" />
+          <Property Name="userDurum" Type="Boolean" />
+          <Property Name="userAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odas" Relationship="Self.FK_Oda_User" FromRole="User" ToRole="Oda" />
+          <NavigationProperty Name="Uruns" Relationship="Self.FK_Urun_User" FromRole="User" ToRole="Urun" />
+          <NavigationProperty Name="Yetki" Relationship="Self.FK_User_Yetki" FromRole="User" ToRole="Yetki" />
+        </EntityType>
+        <EntityType Name="Vale">
+          <Key>
+            <PropertyRef Name="valeID" />
+          </Key>
+          <Property Name="valeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valeMesaj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="valeDurum" Type="Boolean" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Vale_Oda" FromRole="Vale" ToRole="Oda" />
+        </EntityType>
+        <EntityType Name="Wifi">
+          <Key>
+            <PropertyRef Name="wifiID" />
+          </Key>
+          <Property Name="wifiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wifiAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="wifiPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="odaID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Oda" Relationship="Self.FK_Wifi_Oda" FromRole="Wifi" ToRole="Oda" />
+          <NavigationProperty Name="WifiMesajs" Relationship="Self.FK_WifiMesaj_Wifi" FromRole="Wifi" ToRole="WifiMesaj" />
+        </EntityType>
+        <EntityType Name="WifiMesaj">
+          <Key>
+            <PropertyRef Name="wifiMesajID" />
+          </Key>
+          <Property Name="wifiMesajID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="wifiID" Type="Int32" />
+          <Property Name="wifiText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="wifiBildirimSayi" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Wifi" Relationship="Self.FK_WifiMesaj_Wifi" FromRole="WifiMesaj" ToRole="Wifi" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="yetkiID" />
+          </Key>
+          <Property Name="yetkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yetkiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Yetki" FromRole="Yetki" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RezervasyonActivite_Activite">
+          <End Role="Activite" Type="Self.Activite" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonActivite" Type="Self.RezervasyonActivite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activite">
+              <PropertyRef Name="activiteID" />
+            </Principal>
+            <Dependent Role="RezervasyonActivite">
+              <PropertyRef Name="activiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ariza_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Ariza" Type="Self.Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Ariza">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bildirim_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bildirim" Type="Self.Bildirim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Bildirim">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtraUrun_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExtraUrun" Type="Self.ExtraUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="ExtraUrun">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Keep_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Keep" Type="Self.Keep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Keep">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masor_Spa">
+          <End Role="Spa" Type="Self.Spa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Masor" Type="Self.Masor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spa">
+              <PropertyRef Name="spaID" />
+            </Principal>
+            <Dependent Role="Masor">
+              <PropertyRef Name="spaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonSpa_Masor">
+          <End Role="Masor" Type="Self.Masor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonSpa" Type="Self.RezervasyonSpa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masor">
+              <PropertyRef Name="masorID" />
+            </Principal>
+            <Dependent Role="RezervasyonSpa">
+              <PropertyRef Name="masorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Musteri_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Musteri">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonActivite_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonActivite" Type="Self.RezervasyonActivite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="RezervasyonActivite">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RezervasyonSpa_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RezervasyonSpa" Type="Self.RezervasyonSpa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="RezervasyonSpa">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oda_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Oda" Type="Self.Oda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Oda">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Sipari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vale_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vale" Type="Self.Vale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Vale">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wifi_Oda">
+          <End Role="Oda" Type="Self.Oda" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Wifi" Type="Self.Wifi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oda">
+              <PropertyRef Name="odaID" />
+            </Principal>
+            <Dependent Role="Wifi">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sepet_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Sepet">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Siparis">
+          <End Role="Siparis" Type="Self.Sipari" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="siparisID" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="siparisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDetay_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="SiparisDetay" Type="Self.SiparisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="SiparisDetay">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="odaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunMesaj_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UrunMesaj" Type="Self.UrunMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="UrunMesaj">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="yetkiID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="yetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WifiMesaj_Wifi">
+          <End Role="Wifi" Type="Self.Wifi" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WifiMesaj" Type="Self.WifiMesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wifi">
+              <PropertyRef Name="wifiID" />
+            </Principal>
+            <Dependent Role="WifiMesaj">
+              <PropertyRef Name="wifiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OtelQrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activites" EntityType="Self.Activite" />
+          <EntitySet Name="Arizas" EntityType="Self.Ariza" />
+          <EntitySet Name="Bildirims" EntityType="Self.Bildirim" />
+          <EntitySet Name="Duyurus" EntityType="Self.Duyuru" />
+          <EntitySet Name="ExtraUruns" EntityType="Self.ExtraUrun" />
+          <EntitySet Name="Kategoris" EntityType="Self.Kategori" />
+          <EntitySet Name="Keeps" EntityType="Self.Keep" />
+          <EntitySet Name="Masors" EntityType="Self.Masor" />
+          <EntitySet Name="Musteris" EntityType="Self.Musteri" />
+          <EntitySet Name="Odas" EntityType="Self.Oda" />
+          <EntitySet Name="Receptions" EntityType="Self.Reception" />
+          <EntitySet Name="RezervasyonActivites" EntityType="Self.RezervasyonActivite" />
+          <EntitySet Name="RezervasyonSpas" EntityType="Self.RezervasyonSpa" />
+          <EntitySet Name="Sepets" EntityType="Self.Sepet" />
+          <EntitySet Name="Siparis" EntityType="Self.Sipari" />
+          <EntitySet Name="SiparisDetays" EntityType="Self.SiparisDetay" />
+          <EntitySet Name="Spas" EntityType="Self.Spa" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Taksis" EntityType="Self.Taksi" />
+          <EntitySet Name="Uruns" EntityType="Self.Urun" />
+          <EntitySet Name="UrunMesajs" EntityType="Self.UrunMesaj" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Vales" EntityType="Self.Vale" />
+          <EntitySet Name="Wifis" EntityType="Self.Wifi" />
+          <EntitySet Name="WifiMesajs" EntityType="Self.WifiMesaj" />
+          <EntitySet Name="Yetkis" EntityType="Self.Yetki" />
+          <AssociationSet Name="FK_RezervasyonActivite_Activite" Association="Self.FK_RezervasyonActivite_Activite">
+            <End Role="Activite" EntitySet="Activites" />
+            <End Role="RezervasyonActivite" EntitySet="RezervasyonActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ariza_Oda" Association="Self.FK_Ariza_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Ariza" EntitySet="Arizas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bildirim_Oda" Association="Self.FK_Bildirim_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Bildirim" EntitySet="Bildirims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtraUrun_Urun" Association="Self.FK_ExtraUrun_Urun">
+            <End Role="Urun" EntitySet="Uruns" />
+            <End Role="ExtraUrun" EntitySet="ExtraUruns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategoris" />
+            <End Role="Urun" EntitySet="Uruns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Keep_Oda" Association="Self.FK_Keep_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Keep" EntitySet="Keeps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masor_Spa" Association="Self.FK_Masor_Spa">
+            <End Role="Spa" EntitySet="Spas" />
+            <End Role="Masor" EntitySet="Masors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonSpa_Masor" Association="Self.FK_RezervasyonSpa_Masor">
+            <End Role="Masor" EntitySet="Masors" />
+            <End Role="RezervasyonSpa" EntitySet="RezervasyonSpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Musteri_Oda" Association="Self.FK_Musteri_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Musteri" EntitySet="Musteris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonActivite_Musteri" Association="Self.FK_RezervasyonActivite_Musteri">
+            <End Role="Musteri" EntitySet="Musteris" />
+            <End Role="RezervasyonActivite" EntitySet="RezervasyonActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RezervasyonSpa_Musteri" Association="Self.FK_RezervasyonSpa_Musteri">
+            <End Role="Musteri" EntitySet="Musteris" />
+            <End Role="RezervasyonSpa" EntitySet="RezervasyonSpas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oda_User" Association="Self.FK_Oda_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Oda" EntitySet="Odas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Oda" Association="Self.FK_Sepet_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Sepet" EntitySet="Sepets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Oda" Association="Self.FK_Siparis_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vale_Oda" Association="Self.FK_Vale_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Vale" EntitySet="Vales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wifi_Oda" Association="Self.FK_Wifi_Oda">
+            <End Role="Oda" EntitySet="Odas" />
+            <End Role="Wifi" EntitySet="Wifis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sepet_Urun" Association="Self.FK_Sepet_Urun">
+            <End Role="Urun" EntitySet="Uruns" />
+            <End Role="Sepet" EntitySet="Sepets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Siparis" Association="Self.FK_SiparisDetay_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDetay_Urun" Association="Self.FK_SiparisDetay_Urun">
+            <End Role="Urun" EntitySet="Uruns" />
+            <End Role="SiparisDetay" EntitySet="SiparisDetays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_User" Association="Self.FK_Urun_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Urun" EntitySet="Uruns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunMesaj_Urun" Association="Self.FK_UrunMesaj_Urun">
+            <End Role="Urun" EntitySet="Uruns" />
+            <End Role="UrunMesaj" EntitySet="UrunMesajs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Yetki" Association="Self.FK_User_Yetki">
+            <End Role="Yetki" EntitySet="Yetkis" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WifiMesaj_Wifi" Association="Self.FK_WifiMesaj_Wifi">
+            <End Role="Wifi" EntitySet="Wifis" />
+            <End Role="WifiMesaj" EntitySet="WifiMesajs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OtelQrModelStoreContainer" CdmEntityContainer="OtelQrEntities">
+          <EntitySetMapping Name="Activites">
+            <EntityTypeMapping TypeName="OtelQrModel.Activite">
+              <MappingFragment StoreEntitySet="Activite">
+                <ScalarProperty Name="activiteID" ColumnName="activiteID" />
+                <ScalarProperty Name="activiteResim" ColumnName="activiteResim" />
+                <ScalarProperty Name="activiteAciklama" ColumnName="activiteAciklama" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="activiteFiyat" ColumnName="activiteFiyat" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="kontenjan" ColumnName="kontenjan" />
+                <ScalarProperty Name="activiteAdi" ColumnName="activiteAdi" />
+                <ScalarProperty Name="Restoran" ColumnName="Restoran" />
+                <ScalarProperty Name="Konaklama" ColumnName="Konaklama" />
+                <ScalarProperty Name="activiteYer" ColumnName="activiteYer" />
+                <ScalarProperty Name="activiteSure" ColumnName="activiteSure" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arizas">
+            <EntityTypeMapping TypeName="OtelQrModel.Ariza">
+              <MappingFragment StoreEntitySet="Ariza">
+                <ScalarProperty Name="arizaID" ColumnName="arizaID" />
+                <ScalarProperty Name="arizaAd" ColumnName="arizaAd" />
+                <ScalarProperty Name="arizaMesaj" ColumnName="arizaMesaj" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="arizaDurum" ColumnName="arizaDurum" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bildirims">
+            <EntityTypeMapping TypeName="OtelQrModel.Bildirim">
+              <MappingFragment StoreEntitySet="Bildirim">
+                <ScalarProperty Name="bildirimID" ColumnName="bildirimID" />
+                <ScalarProperty Name="bildirimTur" ColumnName="bildirimTur" />
+                <ScalarProperty Name="bildirimİcerik" ColumnName="bildirimİcerik" />
+                <ScalarProperty Name="bildirimDurum" ColumnName="bildirimDurum" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="bildirimDate" ColumnName="bildirimDate" />
+                <ScalarProperty Name="isChecked" ColumnName="isChecked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyurus">
+            <EntityTypeMapping TypeName="OtelQrModel.Duyuru">
+              <MappingFragment StoreEntitySet="Duyuru">
+                <ScalarProperty Name="duyuruID" ColumnName="duyuruID" />
+                <ScalarProperty Name="duyuruZaman" ColumnName="duyuruZaman" />
+                <ScalarProperty Name="duyuruTitle" ColumnName="duyuruTitle" />
+                <ScalarProperty Name="duyuruIcerik" ColumnName="duyuruIcerik" />
+                <ScalarProperty Name="duyuruSira" ColumnName="duyuruSira" />
+                <ScalarProperty Name="duyuruDurum" ColumnName="duyuruDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtraUruns">
+            <EntityTypeMapping TypeName="OtelQrModel.ExtraUrun">
+              <MappingFragment StoreEntitySet="ExtraUrun">
+                <ScalarProperty Name="extraUrunID" ColumnName="extraUrunID" />
+                <ScalarProperty Name="extraUrunAdi" ColumnName="extraUrunAdi" />
+                <ScalarProperty Name="extraUrunFiyat" ColumnName="extraUrunFiyat" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+                <ScalarProperty Name="extraUrunAdet" ColumnName="extraUrunAdet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoris">
+            <EntityTypeMapping TypeName="OtelQrModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="kategoriAd" ColumnName="kategoriAd" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="kategoriSira" ColumnName="kategoriSira" />
+                <ScalarProperty Name="kategoriResim" ColumnName="kategoriResim" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+                <ScalarProperty Name="kategoriDurum" ColumnName="kategoriDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keeps">
+            <EntityTypeMapping TypeName="OtelQrModel.Keep">
+              <MappingFragment StoreEntitySet="Keep">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="keepID" ColumnName="keepID" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="keepAd" ColumnName="keepAd" />
+                <ScalarProperty Name="keepMesaj" ColumnName="keepMesaj" />
+                <ScalarProperty Name="keepDurum" ColumnName="keepDurum" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masors">
+            <EntityTypeMapping TypeName="OtelQrModel.Masor">
+              <MappingFragment StoreEntitySet="Masor">
+                <ScalarProperty Name="masorID" ColumnName="masorID" />
+                <ScalarProperty Name="masorAdSoyad" ColumnName="masorAdSoyad" />
+                <ScalarProperty Name="masorTC" ColumnName="masorTC" />
+                <ScalarProperty Name="masorCinsiyet" ColumnName="masorCinsiyet" />
+                <ScalarProperty Name="masorDogTar" ColumnName="masorDogTar" />
+                <ScalarProperty Name="spaID" ColumnName="spaID" />
+                <ScalarProperty Name="masorTel" ColumnName="masorTel" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="masorDurum" ColumnName="masorDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteris">
+            <EntityTypeMapping TypeName="OtelQrModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+                <ScalarProperty Name="musteriSoyadi" ColumnName="musteriSoyadi" />
+                <ScalarProperty Name="musteriTC" ColumnName="musteriTC" />
+                <ScalarProperty Name="musteriTelefon" ColumnName="musteriTelefon" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="musteriDurum" ColumnName="musteriDurum" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="musteriTip" ColumnName="musteriTip" />
+                <ScalarProperty Name="musteriDogTar" ColumnName="musteriDogTar" />
+                <ScalarProperty Name="musteriCinsiyet" ColumnName="musteriCinsiyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odas">
+            <EntityTypeMapping TypeName="OtelQrModel.Oda">
+              <MappingFragment StoreEntitySet="Oda">
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="odaNo" ColumnName="odaNo" />
+                <ScalarProperty Name="odaKat" ColumnName="odaKat" />
+                <ScalarProperty Name="odaKatgorevli" ColumnName="odaKatgorevli" />
+                <ScalarProperty Name="qrHash" ColumnName="qrHash" />
+                <ScalarProperty Name="qrUrl" ColumnName="qrUrl" />
+                <ScalarProperty Name="qrFoto" ColumnName="qrFoto" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receptions">
+            <EntityTypeMapping TypeName="OtelQrModel.Reception">
+              <MappingFragment StoreEntitySet="Reception">
+                <ScalarProperty Name="receptionID" ColumnName="receptionID" />
+                <ScalarProperty Name="receptionNumara" ColumnName="receptionNumara" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RezervasyonActivites">
+            <EntityTypeMapping TypeName="OtelQrModel.RezervasyonActivite">
+              <MappingFragment StoreEntitySet="RezervasyonActivite">
+                <ScalarProperty Name="rezervasyonID" ColumnName="rezervasyonID" />
+                <ScalarProperty Name="activiteID" ColumnName="activiteID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="kisiSayisi" ColumnName="kisiSayisi" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+                <ScalarProperty Name="rezervasyonİcerik" ColumnName="rezervasyonİcerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RezervasyonSpas">
+            <EntityTypeMapping TypeName="OtelQrModel.RezervasyonSpa">
+              <MappingFragment StoreEntitySet="RezervasyonSpa">
+                <ScalarProperty Name="rezervasyonID" ColumnName="rezervasyonID" />
+                <ScalarProperty Name="masorID" ColumnName="masorID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="saat" ColumnName="saat" />
+                <ScalarProperty Name="musterigeldimi" ColumnName="musterigeldimi" />
+                <ScalarProperty Name="masorgeldimi" ColumnName="masorgeldimi" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sepets">
+            <EntityTypeMapping TypeName="OtelQrModel.Sepet">
+              <MappingFragment StoreEntitySet="Sepet">
+                <ScalarProperty Name="sepetID" ColumnName="sepetID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="urunMiktar" ColumnName="urunMiktar" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+                <ScalarProperty Name="urunToplamFiyat" ColumnName="urunToplamFiyat" />
+                <ScalarProperty Name="SepetDurum" ColumnName="SepetDurum" />
+                <ScalarProperty Name="SepetZaman" ColumnName="SepetZaman" />
+                <ScalarProperty Name="SepetTur" ColumnName="SepetTur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparis">
+            <EntityTypeMapping TypeName="OtelQrModel.Sipari">
+              <MappingFragment StoreEntitySet="Siparis">
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="siparisZaman" ColumnName="siparisZaman" />
+                <ScalarProperty Name="siparisToplam" ColumnName="siparisToplam" />
+                <ScalarProperty Name="siparisNo" ColumnName="siparisNo" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiparisDetays">
+            <EntityTypeMapping TypeName="OtelQrModel.SiparisDetay">
+              <MappingFragment StoreEntitySet="SiparisDetay">
+                <ScalarProperty Name="siparisDetayID" ColumnName="siparisDetayID" />
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="urunFiyat" ColumnName="urunFiyat" />
+                <ScalarProperty Name="urunMiktar" ColumnName="urunMiktar" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spas">
+            <EntityTypeMapping TypeName="OtelQrModel.Spa">
+              <MappingFragment StoreEntitySet="Spa">
+                <ScalarProperty Name="spaID" ColumnName="spaID" />
+                <ScalarProperty Name="spaAd" ColumnName="spaAd" />
+                <ScalarProperty Name="spaAciklama" ColumnName="spaAciklama" />
+                <ScalarProperty Name="spaResim" ColumnName="spaResim" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="spaFiyat" ColumnName="spaFiyat" />
+                <ScalarProperty Name="spaSuresi" ColumnName="spaSuresi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OtelQrModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taksis">
+            <EntityTypeMapping TypeName="OtelQrModel.Taksi">
+              <MappingFragment StoreEntitySet="Taksi">
+                <ScalarProperty Name="taksiID" ColumnName="taksiID" />
+                <ScalarProperty Name="taksiDurakAd" ColumnName="taksiDurakAd" />
+                <ScalarProperty Name="taksiAd" ColumnName="taksiAd" />
+                <ScalarProperty Name="taksiTelefon" ColumnName="taksiTelefon" />
+                <ScalarProperty Name="taksiAdres" ColumnName="taksiAdres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uruns">
+            <EntityTypeMapping TypeName="OtelQrModel.Urun">
+              <MappingFragment StoreEntitySet="Urun">
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+                <ScalarProperty Name="urunFiyat" ColumnName="urunFiyat" />
+                <ScalarProperty Name="urunResim" ColumnName="urunResim" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="urunStok" ColumnName="urunStok" />
+                <ScalarProperty Name="urunDurum" ColumnName="urunDurum" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="urun1" ColumnName="urun" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+                <ScalarProperty Name="urunAciklama" ColumnName="urunAciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunMesajs">
+            <EntityTypeMapping TypeName="OtelQrModel.UrunMesaj">
+              <MappingFragment StoreEntitySet="UrunMesaj">
+                <ScalarProperty Name="urunMesajID" ColumnName="urunMesajID" />
+                <ScalarProperty Name="urunMesajText" ColumnName="urunMesajText" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OtelQrModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="yetkiID" ColumnName="yetkiID" />
+                <ScalarProperty Name="userZaman" ColumnName="userZaman" />
+                <ScalarProperty Name="userDurum" ColumnName="userDurum" />
+                <ScalarProperty Name="userAdSoyad" ColumnName="userAdSoyad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vales">
+            <EntityTypeMapping TypeName="OtelQrModel.Vale">
+              <MappingFragment StoreEntitySet="Vale">
+                <ScalarProperty Name="valeID" ColumnName="valeID" />
+                <ScalarProperty Name="valeMesaj" ColumnName="valeMesaj" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="valeDurum" ColumnName="valeDurum" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wifis">
+            <EntityTypeMapping TypeName="OtelQrModel.Wifi">
+              <MappingFragment StoreEntitySet="Wifi">
+                <ScalarProperty Name="wifiID" ColumnName="wifiID" />
+                <ScalarProperty Name="wifiAdi" ColumnName="wifiAdi" />
+                <ScalarProperty Name="wifiPassword" ColumnName="wifiPassword" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="odaID" ColumnName="odaID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WifiMesajs">
+            <EntityTypeMapping TypeName="OtelQrModel.WifiMesaj">
+              <MappingFragment StoreEntitySet="WifiMesaj">
+                <ScalarProperty Name="wifiMesajID" ColumnName="wifiMesajID" />
+                <ScalarProperty Name="wifiID" ColumnName="wifiID" />
+                <ScalarProperty Name="wifiText" ColumnName="wifiText" />
+                <ScalarProperty Name="wifiBildirimSayi" ColumnName="wifiBildirimSayi" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetkis">
+            <EntityTypeMapping TypeName="OtelQrModel.Yetki">
+              <MappingFragment StoreEntitySet="Yetki">
+                <ScalarProperty Name="yetkiID" ColumnName="yetkiID" />
+                <ScalarProperty Name="yetkiAd" ColumnName="yetkiAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

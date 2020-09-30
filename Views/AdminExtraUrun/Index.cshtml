@@ -1,0 +1,99 @@
+﻿@using Otel.Models
+@model List<ExtraUrun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<a href="/AdminExtraUrun/Create/" class="btn btn-danger mb-1 btn-sm">Yeni Extra Urun Ekle</a>
+
+
+<!-- table strip dark -->
+<div class="table-responsive">
+    <table class="table table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Extra urun Adı</th>
+                <th>Fiyat</th>
+                <th>Durum</th>
+
+                <th>DÜZENLE</th>
+                <th>SİL</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td> @item.Urun.urunAd </td>
+                <td> @item.extraUrunAdi </td>
+                <td> @Convert.ToDouble(item.extraUrunFiyat) ₺ </td>
+                <td>
+                    @if (item.active == true)
+                    {
+                        <span class="badge badge-success">Aktif</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-warning">Pasif</span>
+                    }
+                </td>
+
+
+
+                <td><button type="button" class="btn btn-info btn-sm" onclick="@("window.location.href='"+Url.Action("Edit","AdminExtraUrun", new { extraUrunID = item.extraUrunID }) + "'");"><i class="fas fa-pencil-alt"></i> Duzenle</button></td>
+                <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteExtraUrunRecord(@item.extraUrunID)"><i class="fas fa-trash"></i> Sil</button></td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Extra urun Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen extra urunu silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteExtraUrunRecord = function (extraUrunID) {
+        $("#extraUrunID").val(extraUrunID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var extraUrunID = $("#extraUrunID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminExtraUrun/DeleteExtraUrunRecord?extraUrunID=" + extraUrunID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminExtraUrun/Index";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>

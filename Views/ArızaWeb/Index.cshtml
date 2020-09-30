@@ -1,0 +1,143 @@
+﻿@model IList<Otel.Models.Ariza>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-2">
+                <!-- Product Single -->
+                <div class="product-single">
+                    <div class="product-image">
+                        <img src="~/WebContent/assets/img/photos/product-single.jpg" alt="">
+                    </div>
+                    <div class="product-content">
+
+                        <h3 class="product-title" align="center"><b>Arıza Bildirimleri</b></h3>
+                        <span class="product-caption text-muted" align="center">Buradan odanızla ilgili arıza taleplerinde bulunabilirsiniz.</span>
+                        <hr class="hr-primary">
+
+                        <div class="panel-details-container">
+                            <div class="backButton" style="left:13px;">
+                                <a href="/Home/Index" class="module module-cart">
+                                    <i class="fa fa-arrow-left" style="font-size:23px;color:#666464"></i>
+                                </a>
+                            </div>
+                            <!-- Panel Details / Size -->
+                            @foreach (var item in Model)
+                            {
+
+
+                                <div class="panel-details">
+                                    <h5 class="panel-details-title">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id=@item.arizaID value='@item.arizaAd' onchange="changeEvent(this)">
+
+                                            @if (item.arizaID == 999)
+                                            {
+                                                <label class="form-check-label" for=@item.arizaID data-toggle="collapse">@item.arizaAd   </label>
+                                                <div id="panelDetailsOther" class="collapse">
+                                                    <textarea cols="30" rows="4" class="form-control" placeholder="Odanız ile ilgili ek taleplerinizi buradan bize iletebilirsiniz."></textarea>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <label class="form-check-label" for=@item.arizaID>@item.arizaAd </label>
+                                            }
+
+
+
+
+                                        </div>
+                                    </h5>
+
+                                </div>
+                            }
+
+                        </div>
+
+                        <!-- Panel Details / Other -->
+                        @*<div class="panel-details">
+                                <h5 class="panel-details-title">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_title_other" type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                    </label>
+                                    <a href="#panelDetailsOther" data-toggle="collapse">Diğer</a>
+                                </h5>
+                                <div id="panelDetailsOther" class="collapse">
+                                    <textarea cols="30" rows="4" class="form-control" placeholder="Odanız ile ilgili ek taleplerinizi buradan iletebilirsiniz."></textarea>
+                                </div>
+                            </div>*@
+
+
+
+
+                        <div class="row">
+
+                            <div class="col-sm-12" align="center">
+                                <button class="btn btn-outline-primary btn-lg btn-block" onclick="SendNotification()"><span>Bildir</span></button>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="@Url.Action("Index","Home")" class="btn btn-link">Anasayfaya Dön</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    // 1 - HouseKepping 2 - Arıza
+
+    var dataList = [];
+
+    var changeEvent = function (e){
+
+        var data = {};
+        if (e.checked) {
+            data = {
+                BildirimTur: '2',
+                Bildirimİcerik : e.value,
+                BildirimDurum : false
+            }
+            dataList.push(data);
+        }
+    }
+    var SendNotification = function () {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddAriza", "ArızaWeb")',
+            data: { 'model': dataList},
+            success: function (result) {
+                 if (dataList.length <= 0) {
+                    swal("Başarısız!", "Bildiriminiz iletilemedi seçim yapınız.", "error");
+                } else {
+                      swal("Başarılı!", "Bildiriminiz yetkili birimimize iletilmiştir.", "success");
+                setTimeout(function () { location.reload(); }, 1500)
+                console.log(result);
+                }
+
+
+                },
+            error: function () {
+                console.log("error.");
+
+            }
+
+        });
+
+    }
+</script>
+

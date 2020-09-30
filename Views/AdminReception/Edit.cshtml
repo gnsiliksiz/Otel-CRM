@@ -1,0 +1,58 @@
+﻿@model Otel.Models.Reception
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "AdminReception", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Resepsiyon Bilgi Düzenle</b></h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="#">
+                                @Html.Hidden("receptionID")
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Resepsiyon Numarası</label>
+                                        @Html.EditorFor(model => model.receptionNumara, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.receptionNumara, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    <div class="col-6 form-group file-repeater">
+
+
+                                        <div class="col form-group p-0">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Güncelle" class="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <br /><br />
+                                        <div>
+                                            @Html.ActionLink("Geri Dön", "Index")
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+
+        </div>
+    </section>
+}
+

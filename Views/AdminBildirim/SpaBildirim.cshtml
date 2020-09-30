@@ -1,0 +1,196 @@
+﻿@model IList<Otel.Models.RezervasyonSpa>
+@{
+    ViewBag.Title = "ActiviteBildirim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~~/Content/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
+
+<div class="breadcrumb-wrapper col-12">
+    <ol class="breadcrumb p-0 mb-0">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","AdminHome")"><i class="bx bx-home-alt"></i></a>
+        </li>
+
+        <li class="breadcrumb-item active">
+            <b>Spa/Masaj Bilgi Talepleri </b>
+        </li>
+    </ol>
+</div>
+<br />
+
+<br />
+<br />
+
+<div class="content-body">
+    <!-- table Transactions start -->
+    <section id="table-transactions">
+        <div class="card">
+
+            <!-- datatable start -->
+            <div class="table-responsive">
+                <table id="table-extended-transactions" class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>SEÇ</th>
+                            <th>DURUM</th>
+                            <th>MASÖR</th>
+                            <th>NEREDEN</th>
+                            <th>KİMDEN</th>
+                            <th>İSTENİLEN TARİH</th>
+                            <th>İSTENİLEN SAAT</th>
+
+                            <th>BİLDİRİM TARİHİ</th>
+
+                            <th>SİL</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="dt-checkboxes">
+                                        <input type="checkbox" class="dt-checkboxes-input" id="checkbox1" value="@item.rezervasyonID" onchange="changeEvent(this)">
+                                        <label class="dt-checkboxes-label" for="checkbox1"></label>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    @if (item.active == true)
+                                    {
+
+                                        <div class="badge badge-pill badge-light-success mr-1">Tamamlandı</div>
+                                    }
+                                    else if (item.active == false)
+                                    {
+                                        <div class="badge badge-pill badge-light-danger mr-1">Beklemede </div>
+                                    }
+
+
+                                </td>
+
+                                <td class="text-bold-600">@item.Masor.masorAdSoyad</td>
+
+
+                                <td>
+
+                                    <span class="bullet bullet-success bullet-sm"></span>
+                                    <small class="text-muted"><b>Spa</b></small>
+
+
+                                </td>
+                                <td></td>
+                                <td><small class="text-muted"> @Convert.ToDateTime(item.tarih).ToShortDateString()</small></td>
+                                <td><small class="text-muted">@item.saat</small></td>
+
+
+                                <td><small class="text-muted">@item.createDate</small></td>
+                                <td>
+                                    <div>
+                                        <a><i class="badge-circle badge-circle-light-danger bx bx-trash font-medium-1" data-toggle="modal" data-target="#DeleteConfirmation" onclick="DeleteRezervasyonSpaRecord(@item.rezervasyonID)"></i></a>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- datatable ends -->
+        </div>
+    </section>
+
+    @Html.Hidden("rezervasyonID")
+
+    <div>
+        <button align="center" class="btn btn-success glow mr-1 mb-1" onclick="DurumDegistir()"><i class="bx bx-check"></i>Tamamlandı</button>
+
+    </div>
+
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="DeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Bildirimi Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Seçilen bildirimi/bildirimleri silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Onayla</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    //Show The Popup Modal For DeleteComfirmation
+    var DeleteRezervasyonSpaRecord = function (rezervasyonID) {
+        $("#rezervasyonID").val(rezervasyonID);
+        $("#DeleteConfirmation").modal("show");
+    }
+    var ConfirmDelete = function () {
+        var rezervasyonID = $("#rezervasyonID").val();
+        $.ajax({
+            type: "POST",
+            url: "/AdminBildirim/DeleteRezervasyonSpaRecord?rezervasyonID=" + rezervasyonID,
+            success: function (result) {
+                alert("Silme islemi Basarili!..");
+                window.location.href = "/AdminBildirim/SpaBildirim";
+                $("#DeleteConfirmation").modal("hide");
+                $("#modal .close").click();
+            }
+        })
+    }
+</script>
+<script>
+
+    var dataList = [];
+
+    var changeEvent = function (e) {
+
+        if (e.checked) {
+            var data = {
+               rezervasyonID : e.value
+            };
+
+            dataList.push(data);
+
+        }
+
+
+    }
+
+    var DurumDegistir = function () {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GuncelleSpaDurum","AdminBildirim")',
+            data: { 'model': dataList },
+            success: function (result) {
+                //location.changeEvent();
+                 location.reload();
+                console.log(result);
+
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    }
+
+
+
+</script>

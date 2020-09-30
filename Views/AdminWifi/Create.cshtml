@@ -1,0 +1,69 @@
+﻿@model Otel.Models.Wifi
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "AdminWifi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section id="form-control-repeater">
+        <div class="row">
+            <!-- file repeater  -->
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Wifi Kayıt Oluştur</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body" style="height:240px">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Oda No</label>
+                                        @Html.DropDownList("odaID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.odaID, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Wifi Şifre</label>
+                                        @Html.EditorFor(model => model.wifiPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Wifi şifrenizi giriniz" } })
+                                        @Html.ValidationMessageFor(model => model.wifiPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label class="control-label col-md-6">Durum</label>
+                                        @Html.EditorFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <br /><br />
+
+                                    <div class="form-group  ">
+                                        <div class="col-md-offset-2 col-md-10" align="right">
+
+                                            <input type="submit" value="Kaydet" class="btn btn-success " />
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /file repeater -->
+            <div>
+                @Html.ActionLink("Geri Dön", "Index")
+            </div>
+        </div>
+    </section>
+}
+

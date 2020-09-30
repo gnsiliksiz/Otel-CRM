@@ -1,0 +1,153 @@
+﻿@model IList<Otel.Models.Kategori>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section Sepet{
+    <div class="col-md-2">
+        <a href="#" class="module module-cart right" data-toggle="panel-cart">
+            <span class="cart-icon">
+                <i class="ti ti-shopping-cart"></i>
+                <span class="notification">@ViewBag.count</span>
+            </span>
+            @if (ViewBag.totalprice != 0)
+            {
+                <span class="cart-value">$@ViewBag.totalprice</span>
+            }
+            else
+            {
+
+            }
+
+        </a>
+    </div>
+}
+<div id="content">
+    <div class="page-content">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-10 push-md-1" role="tablist">
+                    <!-- Menu Category / Burgers -->
+                    @foreach (var item in Model)
+                    {
+                        Html.Hidden("kategoriID");
+                        <div id="@item.kategoriID" class="menu-category">
+                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#@item.kategoriAd" data-toggle="collapse" aria-expanded="true">
+
+                                <div class="bg-image"><img src="@item.kategoriResim" alt=""></div>
+                                <h2 class="title">@item.kategoriAd</h2>
+
+                            </div>
+
+                            <div id="@item.kategoriAd" class="menu-category-content padded collapse">
+
+                                <div class="row gutters-sm">
+                                    @foreach (var item1 in item.Uruns)
+                                    {
+                                        if (item1.isDeleted == false)
+                                        {
+                                            Html.Hidden("urunID");
+                                            <div class="col-lg-4 col-6">
+                                                <div class="menu-item menu-grid-item">
+                                                    <img class="mb-4" src="@item1.urunResim" alt="">
+                                                    <h6 class="mb-0">@item1.urunAd</h6>
+                                                    <span class="text-muted text-sm">@item1.urunAciklama</span>
+                                                    <div class="row align-items-center mt-4">
+                                                        <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted"><b>TL &nbsp;</b></span>@item1.urunFiyat</span></div>
+                                                        <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
+                                                            @using (Html.BeginForm("AddToCart", "Kategori", new { urunID = item1.urunID }, FormMethod.Post))
+                                                            {
+                                                                <button class="btn btn-outline-secondary btn-sm" >
+                                                                    <span>Sipariş Ver</span>
+                                                                </button>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--SEPETE EKLE-->
+<div id="panel-cart">
+    <div class="panel-cart-container">
+        <div class="panel-cart-title">
+            <h5 class="title">Sepetim</h5>
+            <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+        </div>
+        <div class="panel-cart-content">
+            <table class="table-cart">
+
+
+
+                @if (ViewBag.carts != null)
+                {
+                    foreach (var item in ViewBag.carts as List<Otel.Models.CartModel>)
+                    {
+                        <tr>
+                            <td class="title">
+                                <span class="name"><a href="#productModal" data-toggle="modal"></a>@item.Urun.urunAd</span>
+                            </td>
+                            <td class="price">x @item.Quantity</td>
+                            <td class="price">@item.Urun.urunFiyat</td>
+                            <td class="actions">
+
+                                <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td class="price">Sepet Boş</td>
+                    </tr>
+                }
+
+
+
+                @*<tr>
+                        <td class="title">
+                            <span class="name">Weekend 20% OFF</span>
+                        </td>
+                        <td class="price text-success">-$8.22</td>
+                        <td class="actions"></td>
+                    </tr>*@
+            </table>
+            <div class="cart-summary">
+
+
+                <hr class="hr-sm">
+                <div class="row text-lg">
+                    <div class="col-7 text-right text-muted">Toplam:</div>
+                    <div class="col-5"><strong>@ViewBag.totalprice</strong></div>
+                </div>
+            </div>
+            <div class="bg-white p-4 p-md-5 mb-4">
+                
+                <div class="text-center">
+                    <a href="@Url.Action("Index", "OdemeTip") ">                   
+                            <span>Ödemeye Git!</span>
+
+                    </a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
